@@ -33,10 +33,10 @@ def viz_seq(args):
     cfg.data_shapes = data_shapes
     if args.no_first:
         if args.keyp_pred:
-            print("Loding keyp pred")
+            print("Loading keyp pred")  #fix typo in print
             model = train_keyp_pred.KeypointModel(cfg).to(device)
         elif args.keyp_inverse:
-            print("Loding Inverse Model")
+            print("Loading Inverse Model")  #fix typo in print 
             model = train_keyp_inverse.KeypointModel(cfg).to(device)
         else:
             model = train_nofirst.KeypointModel(cfg).to(device)
@@ -130,10 +130,10 @@ def run_final_test(args):
     cfg.data_shapes = data_shapes
     if args.no_first:
         if args.keyp_pred:
-            print("Loding keyp pred")
+            print("Loading keyp pred")  #fix typo in print
             model = train_keyp_pred.KeypointModel(cfg).to(device)
         elif args.keyp_inverse:
-            print("Loding Inverse Model")
+            print("Loading Inverse Model")  #fix typo in print
             model = train_keyp_inverse.KeypointModel(cfg).to(device)
         else:
             pass
