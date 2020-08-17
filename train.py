@@ -23,7 +23,7 @@ from pytorch_lightning.loggers import TensorBoardLogger
 
 class KeypointModel(pl.LightningModule):
 
-    def __init__(self, hparams): # Accepts hyper  paramaters
+    def __init__(self, hparams): # Accept hyperparamaters
         super(KeypointModel, self).__init__()
 
         cfg = hparams
