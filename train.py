@@ -23,6 +23,13 @@ from pytorch_lightning.loggers import TensorBoardLogger
 
 class KeypointModel(pl.LightningModule):
 
+    # Model architecture:
+
+    # image_sequence --> keypoints --> reconstructed_image_sequence
+        #                  |
+        #                  V
+                # dynamics_model --> predicted_keypoints
+
     def __init__(self, hparams): # Accept hyperparamaters
         super(KeypointModel, self).__init__()
 
