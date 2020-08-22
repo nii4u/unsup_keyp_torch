@@ -1,0 +1,37 @@
+node-2080ti-6
+Sat Aug 22 06:24:25 2020       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 440.82       Driver Version: 440.82       CUDA Version: 10.2     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GeForce RTX 208...  Off  | 00000000:1A:00.0 Off |                  N/A |
+| 17%   33C    P0    20W / 250W |      0MiB / 11019MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+Data loader:  test
+Loading data from:  data/fetch_reach_25/test
+Shapes Before:  {'image': (None, 64, 64, 3), 'true_object_pos': (None, 0, 2), 'action': (None, 4), 'frame_ind': (None,), 'file_idx': (None,)}
+Dtypes Before:  {'image': dtype('float32'), 'true_object_pos': dtype('float32'), 'action': dtype('float32'), 'frame_ind': dtype('int32'), 'file_idx': dtype('int64')}
+Shapes After:  {'image': (None, 150, 3, 64, 64), 'true_object_pos': (None, 150, 0, 2), 'action': (None, 150, 4), 'frame_ind': (None, 150), 'file_idx': (None, 150)}
+
+Loading keyp pred
+Traceback (most recent call last):
+  File "test_viz.py", line 166, in <module>
+    viz_seq(args)
+  File "test_viz.py", line 52, in viz_seq
+    checkpoint = torch.load(checkpoint_path, map_location=lambda storage, loc: storage)
+  File "/home/lloyd/anaconda3/lib/python3.8/site-packages/torch/serialization.py", line 571, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/lloyd/anaconda3/lib/python3.8/site-packages/torch/serialization.py", line 229, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/lloyd/anaconda3/lib/python3.8/site-packages/torch/serialization.py", line 210, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'exp_data/fetch_reach_16kp_track_s_0/2020-06-02-03-52-29/checkpoints/_ckpt_epoch_600.ckpt'
