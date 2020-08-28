@@ -23,7 +23,14 @@ from pytorch_lightning.loggers import TensorBoardLogger
 
 class KeypointModel(pl.LightningModule):
 
-    def __init__(self, hparams): # Accepts hyper  paramaters
+    # Model architecture:
+
+    # image_sequence --> keypoints --> reconstructed_image_sequence
+        #                  |
+        #                  V
+                # dynamics_model --> predicted_keypoints
+
+    def __init__(self, hparams): # Accept hyperparamaters
         super(KeypointModel, self).__init__()
 
         cfg = hparams
@@ -185,6 +192,7 @@ def main(args):
     save_path = os.path.join(checkpoint_dir, "model_final_" + str(args.num_epochs) + ".ckpt")
     print("Saving model finally:")
     trainer.save_checkpoint(save_path)
+    print("model saved")
 
 if __name__ == "__main__":
     from register_args import get_argparse, save_config
