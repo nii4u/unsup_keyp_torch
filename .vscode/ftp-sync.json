@@ -1,0 +1,27 @@
+{
+    "remotePath": "./home/lloyd/git-repos/unsup_keyp_torch",
+    "host": "host",
+    "username": " ",
+    "password": "password",
+    "port": 21,
+    "secure": false,
+    "protocol": "ssh",
+    "uploadOnSave": false,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "agent": null,
+    "allow": [],
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\.DS_Store"
+    ],
+    "generatedFiles": {
+        "extensionsToInclude": [
+            ""
+        ],
+        "path": ""
+    }
+}
