@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --output=/job_logs/job-%j.out
+#SBATCH --output=/scratch/lloyd/job_logs/example/job-%j.out
 #SBATCH --mem-per-gpu=10G
 #SBATCH --cpus-per-gpu=4
 #SBATCH --gpus=1
@@ -12,7 +12,10 @@ nvidia-smi
 
 #python train_keyp_pred.py --data_dir data/fetch_reach_25 --exp_name demo_lloyd_thurs
 
-python train.py --data_dir /scratch/lloyd/data/fetch_reach_25 --no_first --num_keypoints 16 --num_epochs 20 --exp_name lloyd_train_20_wed
+
+#python train.py --data_dir /scratch/lloyd/data/fetch_reach_25 --no_first --num_steps 150 --exp_name train_10k_steps
+python test_viz.py --data_dir /scratch/lloyd/data/fetch_reach_25 --pretrained_path exp_data/train_10k_steps/2020-08-27-12-29-13/checkpoints --vids_path fetch_reach_50_10k --action_dim 4 --ckpt 25
+
 
 #python test_viz.py --data_dir /scratch/lloyd/data/fetch_reach_25 --no_first --keyp_pred --timesteps 150 --pretrained_path exp_data/fetch_reach_16kp_track_s_0/2020-06-02-03-52-29/checkpoints --vids_path fetch_reach_25_16kp_TODAY --num_keypoints 16 --action_dim 4 --ckpt 600
 
