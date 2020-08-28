@@ -192,6 +192,7 @@ def main(args):
     save_path = os.path.join(checkpoint_dir, "model_final_" + str(args.num_epochs) + ".ckpt")
     print("Saving model finally:")
     trainer.save_checkpoint(save_path)
+    print("model saved")
 
 if __name__ == "__main__":
     from register_args import get_argparse, save_config

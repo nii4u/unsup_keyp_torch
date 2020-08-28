@@ -460,7 +460,7 @@ def viz_track(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100, sav
         f3 = ax2.imshow(pred_img)
 
         ax1.set_title("Input Img and Keypoints")
-        ax2.set_title("Reconstructeed Img")
+        ax2.set_title("Reconstructed Img")
 
         return [f1] + [f2] + [f3] + f4
 
@@ -501,7 +501,7 @@ def viz_all(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100, save_
         f3 = ax2.imshow(pred_img)
 
         ax1.set_title("Input Img and Keypoints")
-        ax2.set_title("Reconstructeed Img")
+        ax2.set_title("Reconstructed Img")
 
         return [f1] + [f2] + [f3]
 
