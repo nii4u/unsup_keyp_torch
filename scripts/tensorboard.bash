@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --output=/job_logs/tb/job-tensorboard-%j.out
+#SBATCH --output=/scratch/lloyd/job_logs/tb/job-tensorboard-%j.out
 #SBATCH --qos=viz
 #SBATCH --partition=viz
 #SBATCH --cores=1
