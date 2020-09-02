@@ -10,8 +10,6 @@
 hostname
 nvidia-smi
 
-
-python train.py --data_dir /scratch/lloyd/data/fetch_reach_25 --no_first --keyp_pred --num_epochs 625 --num_keypoints 16 --exp_name train_600_Epoch
-
+python train.py
 
 exit 0
