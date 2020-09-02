@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --output=/scratch/lloyd/job_logs/example/job-%j.out
+#SBATCH --gpus-per-task=1
+#SBATCH --mem-per-gpu=11G
+#SBATCH --cpus-per-gpu=4
+#SBATCH --time=80:00:00
+#SBATCH --qos=dinesh-high
+#SBATCH --partition=dinesh-compute
+#SBATCH --array=0
+args="$*"
+nvidia-smi -L
+
+cd /home/lloyd/git-repos/unsup_keyp_torch/
+
+python train_keyp_pred.py --heatmap_reg 5e-2 --seed $(($SLURM_ARRAY_TASK_ID * 5)) $args
+#job-seq-%A_%a.out
+PYTHON_EXIT_CODE=$?
+
+exit $PYTHON_EXIT_CODE
