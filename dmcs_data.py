@@ -1,15 +1,16 @@
 import argparse
 import os
-
-#import dmc2gym
+from absl import logging
+import dmc2gym
 import imageio
-
+#import mujoco_py
+#from gym.wrappers import Monitor
 from video_env import VideoRecorder
 import numpy as np
 import random
 import glob
 import gym
-import fetch_env_custom
+#import fetch_env_custom
 from skimage.transform import resize
 from skimage.transform import rotate
 from skimage.util import img_as_ubyte
@@ -53,7 +54,10 @@ def collect_data(args):
 
             action = env.action_space.sample()
             next_obs, reward, done, _ = env.step(action)
-            if i < 10: video.record(env)
+            # print('================================')
+            # print(env)
+            # print('================================')
+            if i < 10: video.record(env)  
 
             frames.append(obs)
             actions.append(action)
@@ -86,8 +90,8 @@ def get_frame(env, crop=(80,350), size=(64,64)):
 
 def collect_data_fetch(args):
     #env = gym.make("FetchPushCustom-v1", n_substeps=20)
-    #env = gym.make("FetchPickAndPlace-v1")
-    env = gym.make("FetchReach-v1")
+    env = gym.make("FetchPickAndPlace-v1")
+    #env = gym.make("FetchReach-v1")
     #env = SawyerReachPushPickPlaceEnv()
 
     np.random.seed(args.seed)
@@ -143,7 +147,7 @@ def collect_data_fetch(args):
         save_dir = os.path.join(args.dir_name, "orig")
         if not os.path.isdir(save_dir): os.makedirs(save_dir)
         save_path = os.path.join(save_dir, file_name)
-        np.savez(save_path, **data)
+        np.savez(save_path, **data) 
 
 
 def collect_data_robosuite(args):
@@ -158,7 +162,7 @@ def collect_data_robosuite(args):
         use_camera_obs=True,  # use camera observations
         camera_height=64,  # set camera height
         camera_width=64,  # set camera width
-        camera_name='sideview',  # use "agentview" camera
+        camera_name='sideview',  # use "agentview" camera sideview
         use_object_obs=False,  # no object feature when training on pixels
         control_freq=60
     )
@@ -265,10 +269,10 @@ def create_train_split(args):
     test_files = glob.glob(test_dir)
 
     num_train_files = len(train_files)
-    #split_fracs = [2/3.0, 1/3.0, 1/6.0]
+    split_fracs = [2/3.0, 1/3.0, 1/6.0]
     #split_fracs = [1/30.0]
     #split_fracs = [1.0/2.0, 1.0/4.0]
-    split_fracs = [1/3.0]
+    #split_fracs = [1/3.0]
     for frac in split_fracs:
         num_split = int((frac * num_train_files))
 
@@ -313,10 +317,10 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    # #collect_data(args)
+    #collect_data(args)
     # train_test_split(args)
 
     #collect_data_fetch(args)
     #collect_data_robosuite(args)
     #train_test_split(args)
-    create_train_split(args)
+    #create_train_split(args)

@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<robot name="cellphone_014">
+  <material name="color">
+    <color rgba=".5 .5 .5 1"/>
+  </material>
+
+  <link name="base_link">
+    <contact>
+      <lateral_friction value="1.0"/>
+      <rolling_friction value="0.001"/>
+      <spinning_friction value="0.001"/>
+      <inertia_scaling value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-1.71228e-07 4.46523e-05 7.03259e-05"/>
+       <mass value="0.1"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+    </inertial>
+
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="cellphone_014_vhacd_0_of_1.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="cellphone_014_vhacd_0_of_1.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+
+  </link>
+</robot>

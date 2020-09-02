@@ -1,0 +1,129 @@
+scp /home/lloyd/Downloads/train.py lloyd@kostas-ap.seas.upenn.edu:home/lloyd/git-repos/unsup_key/pytorch-cpn/256.192.model
+
+
+scp example.bash lloyd@kostas-ap.seas.upenn.edu:/scratch/lloyd
+
+------------------------------------------------------------------
+#!/bin/bash
+#SBATCH --output=/scratch/lloyd/git-repo/unsup_keyp_torch/job_logs/tb/job-tensorboard-%j.out
+#SBATCH --qos=viz
+#SBATCH --partition=viz
+#SBATCH --cores=1
+
+PORT_MAP=/tmp/tensorboard_port_map
+
+TB_PORT=$(cat $PORT_MAP | grep "$SLURM_JOBID," | cut -d',' -f2)
+IP_ADDRESS=$(hostname -I | cut -d' ' -f1)
+
+TB_FOLDER=`echo $@ |  sed s/" "/,/g | cut -d "," -f1-`
+
+echo "Go to http://$IP_ADDRESS:$TB_PORT"
+echo $TB_FOLDER
+
+source /scratch/lloyd/venvs/tf1-dev/bin/activate
+tensorboard --logdir $TB_FOLDER --port $TB_PORT
+-----------------------------------------------------
+
+#!/bin/bash
+#SBATCH --qos=viz
+#SBATCH --partition=viz
+#SBATCH --cores=1
+
+PORT_MAP=/tmp/tensorboard_port_map
+
+TB_PORT=$(cat $PORT_MAP | grep "$SLURM_JOBID," | cut -d',' -f2)
+IP_ADDRESS=$(hostname -I | cut -d' ' -f1)
+
+TB_FOLDER=$1
+
+echo "Go to http://$IP_ADDRESS:$TB_PORT"
+
+tensorboard --bind_all --logdir $TB_FOLDER --port $TB_PORT
+----------------------------------------------------------
+#!/bin/bash
+#SBATCH --output=/scratch/srinath/Code/unsup_keyp_torch/job_logs/tb/job-tensorboard-%j.out
+#SBATCH --qos=viz
+#SBATCH --partition=viz
+#SBATCH --cores=1
+
+PORT_MAP=/tmp/tensorboard_port_map
+
+TB_PORT=$(cat $PORT_MAP | grep "$SLURM_JOBID," | cut -d',' -f2)
+IP_ADDRESS=$(hostname -I | cut -d' ' -f1)
+
+TB_FOLDER=`echo $@ |  sed s/" "/,/g | cut -d "," -f1-`
+
+echo "Go to http://$IP_ADDRESS:$TB_PORT"
+echo $TB_FOLDER
+
+source /scratch/srinath/venvs/tf1-dev/bin/activate
+tensorboard --logdir $TB_FOLDER --port $TB_PORT
+--------------------------------------------------------------------------
+
+Submitted batch job 83593
+
+sbatch scripts/tensorboard.bash exp_data/demo_lloyd_wed_s_0/2020-08-19-19-07-44/logs
+
+
+pip install torch-scatter==latest+cpu -f https://pytorch-geometric.com/whl/torch-3.8.3.html
+
+
+python test_viz.py --data_dir data/fetch_reach_25 --no_first --keyp_pred --timesteps 150 --pretrained_path /home/lloyd/git-repos/unsup_keyp_torch/exp_data/lloyd_train_20/2020-08-25-17-06-15/checkpoints --vids_path vids/lloyd_train_20 --num_keypoints 16 --action_dim 4 --ckpt 20
+
+exp_data/lloyd_train_20/2020-08-25-17-06-15/checkpoints
+
+/home/lloyd/git-repos/unsup_keyp_torch/exp_data
+
+/home/lloyd/git-repos/unsup_keyp_torch/exp_data/lloyd_train_20/2020-08-25-17-06-15/checkpoints/model_final_20.ckpt
+
+/home/lloyd/git-repos/unsup_keyp_torch/exp_data/lloyd_train_20/2020-08-25-17-06-15/checkpoints/model_final_20.ckpt
+
+
+/home/lloyd/git-repos/unsup_keyp_torch/scripts
+
+/scratch/srinath/Code/unsup_keyp_torch/scripts
+
+
+/home/lloyd/git-repos/unsup_keyp_torch/exp_data
+
+
+/home/lloyd/Documents/unsup_keyp_torch/tmp_data
+
+/home/lloyd/git-repos/unsup_keyp_torch/
+
+tmp_data/test_data_vids/lloyd_train_20_seed_0.npz
+
+
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654
+
+
+ln -s /scratch/lloyd/example.bash /home/lloyd/
+
+
+scp -r lloyd@kostas-ap.seas.upenn.edu:/home/lloyd/Documents/unsup_keyp_torch/data /scratch/lloyd
+..............................................................................................................
+
+_ckpt_epoch_0.ckpt  model_final_20.ckpt
+
+_ckpt_epoch_5.ckpt'
+
+lib/domains/berlin/letteverein/edu.txt
+
+/scratch/lloyd/job_logs/tb
+
+
+/home/lloyd/git-repos/unsup_keyp_torch/exp_data/train_10k_steps/2020-08-27-12-29-13/checkpoints #10 training model
+python test_viz.py --data_dir data/fetch_reach_25 --no_first --keyp_pred --timesteps 10000 --pretrained_path exp_data/train_10k_steps/2020-08-27-12-29-13/checkpoints --vids_path fetch_reach_50_10k --action_dim 4 --ckpt 50
+
+~/.mujoco
+
+exp_data/train_600_Epoch/2020-08-29-04-36-58
+
+exp_data/test-run_s_0/2020-08-31-16-06-14 ------------to 
+/home/lloyd/git-repos/unsup_keyp_torch/exp_data/test-run_s_0/2020-08-31-16-06-14
+
+exp_data/train_600_Epoch/2020-08-31-16-06-14/checkpoints/_ckpt_epoch_550.ckpt
+
+python test_viz.py --data_dir data/fetch_reach_25 --no_first --keyp_pred --timesteps 150 --pretrained_path exp_data/fetch_reach_16kp_track_s_0/2020-06-02-03-52-29/checkpoints/ --num_keypoints 16 --ckpt 600
+

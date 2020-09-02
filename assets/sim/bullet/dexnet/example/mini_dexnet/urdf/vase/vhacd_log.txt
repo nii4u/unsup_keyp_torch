@@ -1,0 +1,184 @@
+V-HACD V2.2
+Syntax: testVHACD [options] --input infile.obj --output outfile.wrl --log logfile.txt
+
+Options:
+       --input                     Wavefront .obj input file name
+       --output                    VRML 2.0 output file name
+       --log                       Log file name
+       --resolution                Maximum number of voxels generated during the voxelization stage (default=100,000, range=10,000-16,000,000)
+       --depth                     Maximum number of clipping stages. During each split stage, parts with a concavity higher than the user defined threshold are clipped according the "best" clipping plane (default=20, range=1-32)
+       --concavity                 Maximum allowed concavity (default=0.0025, range=0.0-1.0)
+       --planeDownsampling         Controls the granularity of the search for the "best" clipping plane (default=4, range=1-16)
+       --convexhullDownsampling    Controls the precision of the convex-hull generation process during the clipping plane selection stage (default=4, range=1-16)
+       --alpha                     Controls the bias toward clipping along symmetry planes (default=0.05, range=0.0-1.0)
+       --beta                      Controls the bias toward clipping along revolution axes (default=0.05, range=0.0-1.0)
+       --gamma                     Controls the maximum allowed concavity during the merge stage (default=0.00125, range=0.0-1.0)
+       --delta                     Controls the bias toward maximaxing local concavity (default=0.05, range=0.0-1.0)
+       --pca                       Enable/disable normalizing the mesh before applying the convex decomposition (default=0, range={0,1})
+       --mode                      0: voxel-based approximate convex decomposition, 1: tetrahedron-based approximate convex decomposition (default=0, range={0,1})
+       --maxNumVerticesPerCH       Controls the maximum number of triangles per convex-hull (default=64, range=4-1024)
+       --minVolumePerCH            Controls the adaptive sampling of the generated convex-hulls (default=0.0001, range=0.0-0.01)
+       --convexhullApproximation   Enable/disable approximation when computing convex-hulls (default=1, range={0,1})
+       --oclAcceleration           Enable/disable OpenCL acceleration (default=0, range={0,1})
+       --oclPlatformID             OpenCL platform id (default=0, range=0-# OCL platforms)
+       --oclDeviceID               OpenCL device id (default=0, range=0-# OCL devices)
+       --help                      Print usage
+
+Examples:
+       testVHACD.exe --input bunny.obj --output bunny_acd.wrl --log log.txt
+
++ OpenCL (ON)
+	 Number of OpenCL platforms: 1
+	 OpenCL platform [0]
+		CL_PLATFORM_NAME: FULL_PROFILE
+		CL_PLATFORM_VENDOR: OpenCL 1.2 CUDA 8.0.0
+		CL_PLATFORM_VERSION: NVIDIA CUDA
+		CL_PLATFORM_PROFILE: NVIDIA Corporation
+		CL_PLATFORM_EXTENSIONS: cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_fp64 cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll cl_nv_copy_opts cl_nv_create_buffer
+	 Using OpenCL platform [0]
+	 Number of OpenCL devices: 1
+	 OpenCL device [0]
+		CL_DEVICE_NAME: GeForce GTX 1070
+		CL_DEVICE_PROFILE: FULL_PROFILE
+		CL_DEVICE_VENDOR: NVIDIA Corporation
+		CL_DEVICE_VERSION: OpenCL 1.2 CUDA
+		CL_DRIVER_VERSION: 375.66
+		CL_DEVICE_EXTENSIONS: cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_fp64 cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll cl_nv_copy_opts cl_nv_create_buffer
+		CL_DEVICE_VERSION: OpenCL 1.2 CUDA
+		CL_DEVICE_ADDRESS_BITS: 64
+		CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE: 128
+		CL_DEVICE_MAX_CLOCK_FREQUENCY: 1784
+		CL_DEVICE_MAX_COMPUTE_UNITS: 15
+		CL_DEVICE_MAX_CONSTANT_ARGS: 9
+		CL_DEVICE_MAX_READ_IMAGE_ARGS: 256
+		CL_DEVICE_MAX_SAMPLERS: 32
+		CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS: 3
+		CL_DEVICE_MAX_WRITE_IMAGE_ARGS: 16
+		CL_DEVICE_MEM_BASE_ADDR_ALIGN: 4096
+		CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE: 128
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE: 1
+		CL_DEVICE_VENDOR_ID: 4318
+		CL_DEVICE_AVAILABLE: 1
+		CL_DEVICE_COMPILER_AVAILABLE: 1
+		CL_DEVICE_ENDIAN_LITTLE: 1
+		CL_DEVICE_ERROR_CORRECTION_SUPPORT: 0
+		CL_DEVICE_IMAGE_SUPPORT: 1
+		CL_DEVICE_EXECUTION_CAPABILITIES: 1
+		CL_DEVICE_GLOBAL_MEM_CACHE_SIZE: 245760
+		CL_DEVICE_GLOBAL_MEM_SIZE: 8504868864
+		CL_DEVICE_LOCAL_MEM_SIZE: 49152
+		CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE: 65536
+		CL_DEVICE_MAX_MEM_ALLOC_SIZE: 2126217216
+		CL_DEVICE_GLOBAL_MEM_CACHE_TYPE: 2
+		CL_DEVICE_IMAGE2D_MAX_HEIGHT: 32768
+		CL_DEVICE_IMAGE2D_MAX_WIDTH: 16384
+		CL_DEVICE_IMAGE3D_MAX_DEPTH: 16384
+		CL_DEVICE_IMAGE3D_MAX_HEIGHT: 16384
+		CL_DEVICE_IMAGE3D_MAX_WIDTH: 16384
+		CL_DEVICE_MAX_PARAMETER_SIZE: 4352
+		CL_DEVICE_MAX_WORK_GROUP_SIZE: 1024
+		CL_DEVICE_PROFILING_TIMER_RESOLUTION: 1000
+		CL_DEVICE_QUEUE_PROPERTIES: 3
+		CL_DEVICE_TYPE: 4
+		CL_DEVICE_LOCAL_MEM_TYPE: 1
+		CL_DEVICE_MAX_WORK_ITEM_SIZES: (1024, 1024, 64)
+	 Using OpenCL device [0]
++ OpenMP (ON)
++ Parameters
+	 input                                       outputs/mini_dexnet/urdf/vase/vase.obj
+	 resolution                                  100000
+	 max. depth                                  20
+	 max. concavity                              0.001
+	 plane down-sampling                         4
+	 convex-hull down-sampling                   4
+	 alpha                                       0.05
+	 beta                                        0.05
+	 gamma                                       0.0005
+	 pca                                         0
+	 mode                                        0
+	 max. vertices per convex-hull               64
+	 min. volume to add vertices to convex-hulls 0.0001
+	 convex-hull approximation                   1
+	 OpenCL acceleration                         1
+	 OpenCL platform ID                          0
+	 OpenCL device ID                            0
+	 output                                      outputs/mini_dexnet/urdf/vase/vase_vhacd.obj
+	 log                                         outputs/mini_dexnet/urdf/vase/vhacd_log.txt
++ Load mesh
++ Voxelization
+	 dim = 64	-> 44894 voxels
+	 dim = 83	-> 95970 voxels
+	 time 0.393829s
++ Compute primitive set
+	 # primitives               95970
+	 # inside surface           76695
+	 # on surface               19275
+	 time 0.00242779s
++ Approximate Convex Decomposition
+	 Subdivision level 1
+	 -> Part[0] C  = 0.273173, E  = 0.147439, VS = 19275, VI = 76695
+		 [Regular sampling] Number of clipping planes 52
+
+			 Best  0021 T=0.211035 C=0.205963 B=0.005072 S=0.000000 (0.0, 1.0, 0.0, 0.007)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0004 T=0.212920 C=0.207847 B=0.005072 S=0.000000 (0.0, 1.0, 0.0, 0.007)
+
+	 Subdivision level 2
+	 -> Part[0] C  = 0.0541251, E  = 0.0518464, VS = 6778, VI = 16689
+		 [Regular sampling] Number of clipping planes 34
+
+			 Best  0022 T=0.040293 C=0.037492 B=0.000116 S=0.002685 (0.0, 0.0, 1.0, 0.014)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0004 T=0.040427 C=0.037626 B=0.000116 S=0.002685 (0.0, 0.0, 1.0, 0.014)
+
+	 -> Part[1] C  = 0.15789, E  = 0.113025, VS = 14776, VI = 57727
+		 [Regular sampling] Number of clipping planes 45
+
+			 Best  0004 T=0.124175 C=0.120805 B=0.003370 S=0.000000 (1.0, 0.0, 0.0, 0.018)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0005 T=0.121998 C=0.118756 B=0.003242 S=0.000000 (1.0, 0.0, 0.0, 0.016)
+
+	 Subdivision level 3
+	 -> Part[0] C  = 0.0105063, E  = 0.0231159, VS = 3022, VI = 5877
+	 -> Part[1] C  = 0.0283765, E  = 0.0345821, VS = 4521, VI = 10047
+	 -> Part[2] C  = 0.0120578, E  = 0.0269405, VS = 3522, VI = 5621
+	 -> Part[3] C  = 0.108344, E  = 0.0992486, VS = 12975, VI = 50385
+		 [Regular sampling] Number of clipping planes 41
+
+			 Best  0008 T=0.096786 C=0.094530 B=0.002256 S=0.000000 (1.0, 0.0, 0.0, -0.028)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0002 T=0.092759 C=0.090657 B=0.002102 S=0.000000 (1.0, 0.0, 0.0, -0.025)
+
+	 Subdivision level 4
+	 -> Part[0] C  = 0.0792219, E  = 0.0887156, VS = 11598, VI = 45698
+	 -> Part[1] C  = 0.0127912, E  = 0.0222439, VS = 2908, VI = 3156
++ Generate 5 convex-hulls 
+	 time 0.886265s
++ Merge Convex Hulls
+	 time 0.0107498s
++ Simplify 5 convex-hulls 
+		 Simplify CH[00000] 99 V, 194 T
+		 Simplify CH[00001] 137 V, 270 T
+		 Simplify CH[00002] 156 V, 308 T
+		 Simplify CH[00003] 176 V, 348 T
+		 Simplify CH[00004] 147 V, 290 T
+	 time 0.180117s
++ Generate output: 5 convex-hulls 
+	 CH[00000] 49 V, 94 T
+	 CH[00001] 64 V, 124 T
+	 CH[00002] 64 V, 124 T
+	 CH[00003] 64 V, 124 T
+	 CH[00004] 64 V, 124 T

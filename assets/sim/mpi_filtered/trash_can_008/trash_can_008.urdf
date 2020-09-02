@@ -1,0 +1,231 @@
+<?xml version="1.0" ?>
+<robot name="trash_can_008">
+  <material name="color">
+    <color rgba=".5 .5 .5 1"/>
+  </material>
+
+  <link name="base_link">
+    <contact>
+      <lateral_friction value="1.0"/>
+      <rolling_friction value="0.001"/>
+      <spinning_friction value="0.001"/>
+      <inertia_scaling value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-8.71329e-05 5.47657e-05 0.0128386"/>
+       <mass value="0.1"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+    </inertial>
+
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_0_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_1_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_2_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_3_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_4_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_5_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_6_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_7_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_8_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_9_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_10_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_11_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_12_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_13_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_14_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_15_of_16.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_0_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_1_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_2_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_3_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_4_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_5_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_6_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_7_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_8_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_9_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_10_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_11_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_12_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_13_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_14_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="trash_can_008_vhacd_15_of_16.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+
+  </link>
+</robot>

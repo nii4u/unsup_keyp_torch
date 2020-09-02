@@ -165,7 +165,7 @@ def get_sequence_dataset(data_dir,
 
     dataloader = DataLoader(dataset,
                             batch_size=batch_size,
-                            num_workers=num_workers,
+                            num_workers=num_workers,  ##Set num_workers > 0
                             pin_memory=True,
                             shuffle=shuffle)
 

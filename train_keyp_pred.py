@@ -316,11 +316,12 @@ def main(args):
                       val_percent_check=0.3,
                       track_grad_norm=2,
                       num_sanity_val_steps = 0,
-                      show_progress_bar=True)
+                      show_progress_bar=True)  
     trainer.fit(model)
     save_path = os.path.join(checkpoint_dir, "model_final_" + str(args.num_steps) + ".ckpt")
     print("Saving model finally:")
     trainer.save_checkpoint(save_path)
+    print("model saved")
 
 if __name__ == "__main__":
     from register_args import get_argparse, save_config

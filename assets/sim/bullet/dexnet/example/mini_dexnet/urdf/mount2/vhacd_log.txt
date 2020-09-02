@@ -1,0 +1,320 @@
+V-HACD V2.2
+Syntax: testVHACD [options] --input infile.obj --output outfile.wrl --log logfile.txt
+
+Options:
+       --input                     Wavefront .obj input file name
+       --output                    VRML 2.0 output file name
+       --log                       Log file name
+       --resolution                Maximum number of voxels generated during the voxelization stage (default=100,000, range=10,000-16,000,000)
+       --depth                     Maximum number of clipping stages. During each split stage, parts with a concavity higher than the user defined threshold are clipped according the "best" clipping plane (default=20, range=1-32)
+       --concavity                 Maximum allowed concavity (default=0.0025, range=0.0-1.0)
+       --planeDownsampling         Controls the granularity of the search for the "best" clipping plane (default=4, range=1-16)
+       --convexhullDownsampling    Controls the precision of the convex-hull generation process during the clipping plane selection stage (default=4, range=1-16)
+       --alpha                     Controls the bias toward clipping along symmetry planes (default=0.05, range=0.0-1.0)
+       --beta                      Controls the bias toward clipping along revolution axes (default=0.05, range=0.0-1.0)
+       --gamma                     Controls the maximum allowed concavity during the merge stage (default=0.00125, range=0.0-1.0)
+       --delta                     Controls the bias toward maximaxing local concavity (default=0.05, range=0.0-1.0)
+       --pca                       Enable/disable normalizing the mesh before applying the convex decomposition (default=0, range={0,1})
+       --mode                      0: voxel-based approximate convex decomposition, 1: tetrahedron-based approximate convex decomposition (default=0, range={0,1})
+       --maxNumVerticesPerCH       Controls the maximum number of triangles per convex-hull (default=64, range=4-1024)
+       --minVolumePerCH            Controls the adaptive sampling of the generated convex-hulls (default=0.0001, range=0.0-0.01)
+       --convexhullApproximation   Enable/disable approximation when computing convex-hulls (default=1, range={0,1})
+       --oclAcceleration           Enable/disable OpenCL acceleration (default=0, range={0,1})
+       --oclPlatformID             OpenCL platform id (default=0, range=0-# OCL platforms)
+       --oclDeviceID               OpenCL device id (default=0, range=0-# OCL devices)
+       --help                      Print usage
+
+Examples:
+       testVHACD.exe --input bunny.obj --output bunny_acd.wrl --log log.txt
+
++ OpenCL (ON)
+	 Number of OpenCL platforms: 1
+	 OpenCL platform [0]
+		CL_PLATFORM_NAME: FULL_PROFILE
+		CL_PLATFORM_VENDOR: OpenCL 1.2 CUDA 8.0.0
+		CL_PLATFORM_VERSION: NVIDIA CUDA
+		CL_PLATFORM_PROFILE: NVIDIA Corporation
+		CL_PLATFORM_EXTENSIONS: cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_fp64 cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll cl_nv_copy_opts cl_nv_create_buffer
+	 Using OpenCL platform [0]
+	 Number of OpenCL devices: 1
+	 OpenCL device [0]
+		CL_DEVICE_NAME: GeForce GTX 1070
+		CL_DEVICE_PROFILE: FULL_PROFILE
+		CL_DEVICE_VENDOR: NVIDIA Corporation
+		CL_DEVICE_VERSION: OpenCL 1.2 CUDA
+		CL_DRIVER_VERSION: 375.66
+		CL_DEVICE_EXTENSIONS: cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_fp64 cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll cl_nv_copy_opts cl_nv_create_buffer
+		CL_DEVICE_VERSION: OpenCL 1.2 CUDA
+		CL_DEVICE_ADDRESS_BITS: 64
+		CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE: 128
+		CL_DEVICE_MAX_CLOCK_FREQUENCY: 1784
+		CL_DEVICE_MAX_COMPUTE_UNITS: 15
+		CL_DEVICE_MAX_CONSTANT_ARGS: 9
+		CL_DEVICE_MAX_READ_IMAGE_ARGS: 256
+		CL_DEVICE_MAX_SAMPLERS: 32
+		CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS: 3
+		CL_DEVICE_MAX_WRITE_IMAGE_ARGS: 16
+		CL_DEVICE_MEM_BASE_ADDR_ALIGN: 4096
+		CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE: 128
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT: 1
+		CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE: 1
+		CL_DEVICE_VENDOR_ID: 4318
+		CL_DEVICE_AVAILABLE: 1
+		CL_DEVICE_COMPILER_AVAILABLE: 1
+		CL_DEVICE_ENDIAN_LITTLE: 1
+		CL_DEVICE_ERROR_CORRECTION_SUPPORT: 0
+		CL_DEVICE_IMAGE_SUPPORT: 1
+		CL_DEVICE_EXECUTION_CAPABILITIES: 1
+		CL_DEVICE_GLOBAL_MEM_CACHE_SIZE: 245760
+		CL_DEVICE_GLOBAL_MEM_SIZE: 8504868864
+		CL_DEVICE_LOCAL_MEM_SIZE: 49152
+		CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE: 65536
+		CL_DEVICE_MAX_MEM_ALLOC_SIZE: 2126217216
+		CL_DEVICE_GLOBAL_MEM_CACHE_TYPE: 2
+		CL_DEVICE_IMAGE2D_MAX_HEIGHT: 32768
+		CL_DEVICE_IMAGE2D_MAX_WIDTH: 16384
+		CL_DEVICE_IMAGE3D_MAX_DEPTH: 16384
+		CL_DEVICE_IMAGE3D_MAX_HEIGHT: 16384
+		CL_DEVICE_IMAGE3D_MAX_WIDTH: 16384
+		CL_DEVICE_MAX_PARAMETER_SIZE: 4352
+		CL_DEVICE_MAX_WORK_GROUP_SIZE: 1024
+		CL_DEVICE_PROFILING_TIMER_RESOLUTION: 1000
+		CL_DEVICE_QUEUE_PROPERTIES: 3
+		CL_DEVICE_TYPE: 4
+		CL_DEVICE_LOCAL_MEM_TYPE: 1
+		CL_DEVICE_MAX_WORK_ITEM_SIZES: (1024, 1024, 64)
+	 Using OpenCL device [0]
++ OpenMP (ON)
++ Parameters
+	 input                                       outputs/mini_dexnet/urdf/mount2/mount2.obj
+	 resolution                                  100000
+	 max. depth                                  20
+	 max. concavity                              0.001
+	 plane down-sampling                         4
+	 convex-hull down-sampling                   4
+	 alpha                                       0.05
+	 beta                                        0.05
+	 gamma                                       0.0005
+	 pca                                         0
+	 mode                                        0
+	 max. vertices per convex-hull               64
+	 min. volume to add vertices to convex-hulls 0.0001
+	 convex-hull approximation                   1
+	 OpenCL acceleration                         1
+	 OpenCL platform ID                          0
+	 OpenCL device ID                            0
+	 output                                      outputs/mini_dexnet/urdf/mount2/mount2_vhacd.obj
+	 log                                         outputs/mini_dexnet/urdf/mount2/vhacd_log.txt
++ Load mesh
++ Voxelization
+	 dim = 64	-> 19157 voxels
+	 time 0.312409s
++ Compute primitive set
+	 # primitives               19157
+	 # inside surface           3404
+	 # on surface               15753
+	 time 0.000980741s
++ Approximate Convex Decomposition
+	 Subdivision level 1
+	 -> Part[0] C  = 0.612105, E  = 0.322159, VS = 15753, VI = 3404
+		 [Regular sampling] Number of clipping planes 41
+
+			 Best  0003 T=0.538920 C=0.529042 B=0.009877 S=0.000000 (1.0, 0.0, 0.0, 0.016)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0004 T=0.541845 C=0.531968 B=0.009877 S=0.000000 (1.0, 0.0, 0.0, 0.016)
+
+	 Subdivision level 2
+	 -> Part[0] C  = 0.0265208, E  = 0.0318008, VS = 1555, VI = 54
+	 -> Part[1] C  = 0.507465, E  = 0.290747, VS = 14217, VI = 3331
+		 [Regular sampling] Number of clipping planes 38
+
+			 Best  0012 T=0.460333 C=0.452499 B=0.007834 S=0.000000 (0.0, 1.0, 0.0, 0.020)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0005 T=0.456924 C=0.449310 B=0.007614 S=0.000000 (0.0, 1.0, 0.0, 0.018)
+
+	 Subdivision level 3
+	 -> Part[0] C  = 0.0349303, E  = 0.0265654, VS = 1299, VI = 65
+		 [Regular sampling] Number of clipping planes 16
+
+			 Best  0013 T=0.031228 C=0.031212 B=0.000016 S=0.000000 (0.0, 0.0, 1.0, -0.010)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0005 T=0.029025 C=0.029006 B=0.000019 S=0.000000 (0.0, 0.0, 1.0, -0.011)
+
+	 -> Part[1] C  = 0.417201, E  = 0.264836, VS = 12950, VI = 3234
+		 [Regular sampling] Number of clipping planes 34
+
+			 Best  0014 T=0.378524 C=0.376348 B=0.002176 S=0.000000 (0.0, 1.0, 0.0, -0.016)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0003 T=0.378675 C=0.376955 B=0.001720 S=0.000000 (0.0, 1.0, 0.0, -0.014)
+
+	 Subdivision level 4
+	 -> Part[0] C  = 0.0239482, E  = 0.018651, VS = 912, VI = 45
+		 [Regular sampling] Number of clipping planes 14
+
+			 Best  0008 T=0.019621 C=0.019619 B=0.000003 S=0.000000 (0.0, 1.0, 0.0, 0.026)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0003 T=0.018952 C=0.018946 B=0.000006 S=0.000000 (0.0, 1.0, 0.0, 0.028)
+
+	 -> Part[1] C  = 0.00642596, E  = 0.00791441, VS = 387, VI = 20
+	 -> Part[2] C  = 0.306352, E  = 0.1797, VS = 8787, VI = 1341
+		 [Regular sampling] Number of clipping planes 30
+
+			 Best  0024 T=0.240041 C=0.226767 B=0.002136 S=0.011138 (0.0, 0.0, 1.0, -0.014)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0005 T=0.216394 C=0.203097 B=0.002159 S=0.011138 (0.0, 0.0, 1.0, -0.016)
+
+	 -> Part[3] C  = 0.07561, E  = 0.09121, VS = 4460, VI = 1596
+	 Subdivision level 5
+	 -> Part[0] C  = 0.0043463, E  = 0.00681008, VS = 333, VI = 19
+	 -> Part[1] C  = 0.0147548, E  = 0.0118818, VS = 581, VI = 24
+		 [Regular sampling] Number of clipping planes 12
+
+			 Best  0001 T=0.011865 C=0.011344 B=0.000004 S=0.000518 (1.0, 0.0, 0.0, 0.008)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0004 T=0.011897 C=0.011376 B=0.000004 S=0.000518 (1.0, 0.0, 0.0, 0.008)
+
+	 -> Part[2] C  = 0.179646, E  = 0.152787, VS = 7471, VI = 1073
+		 [Regular sampling] Number of clipping planes 25
+
+			 Best  0003 T=0.164548 C=0.164337 B=0.000211 S=0.000000 (1.0, 0.0, 0.0, -0.005)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0005 T=0.164054 C=0.163971 B=0.000083 S=0.000000 (1.0, 0.0, 0.0, -0.007)
+
+	 -> Part[3] C  = 0.0515619, E  = 0.0269949, VS = 1320, VI = 264
+		 [Regular sampling] Number of clipping planes 19
+
+			 Best  0010 T=0.025172 C=0.025164 B=0.000008 S=0.000000 (0.0, 1.0, 0.0, 0.004)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0004 T=0.025182 C=0.025175 B=0.000008 S=0.000000 (0.0, 1.0, 0.0, 0.004)
+
+	 Subdivision level 6
+	 -> Part[0] C  = 0.00248153, E  = 0.00372202, VS = 182, VI = 1
+	 -> Part[1] C  = 0.00972674, E  = 0.00815982, VS = 399, VI = 23
+		 [Regular sampling] Number of clipping planes 10
+
+			 Best  0009 T=0.005940 C=0.005937 B=0.000004 S=0.000000 (0.0, 0.0, 1.0, -0.006)
+
+		 [Refining] Number of clipping planes 8
+
+			 Best  0004 T=0.005941 C=0.005937 B=0.000004 S=0.000000 (0.0, 0.0, 1.0, -0.006)
+
+	 -> Part[2] C  = 0.0785184, E  = 0.0756675, VS = 3700, VI = 345
+		 [Regular sampling] Number of clipping planes 20
+
+			 Best  0012 T=0.065445 C=0.061453 B=0.000183 S=0.003810 (0.0, 0.0, 1.0, 0.030)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0004 T=0.065489 C=0.061497 B=0.000183 S=0.003810 (0.0, 0.0, 1.0, 0.030)
+
+	 -> Part[3] C  = 0.0854831, E  = 0.079185, VS = 3872, VI = 627
+		 [Regular sampling] Number of clipping planes 20
+
+			 Best  0014 T=0.071780 C=0.067781 B=0.000063 S=0.003936 (0.0, 0.0, 1.0, 0.019)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0005 T=0.070347 C=0.066372 B=0.000039 S=0.003936 (0.0, 0.0, 1.0, 0.018)
+
+	 -> Part[4] C  = 0.0133593, E  = 0.0151744, VS = 742, VI = 123
+	 -> Part[5] C  = 0.0125133, E  = 0.0125567, VS = 614, VI = 105
+	 Subdivision level 7
+	 -> Part[0] C  = 0.0060489, E  = 0.0075463, VS = 369, VI = 23
+	 -> Part[1] C  = 0.000701069, E  = 0.00061352, VS = 30, VI = 0
+	 -> Part[2] C  = 0.00606772, E  = 0.0146631, VS = 717, VI = 156
+	 -> Part[3] C  = 0.0565772, E  = 0.0620269, VS = 3033, VI = 139
+	 -> Part[4] C  = 0.0133649, E  = 0.0339481, VS = 1660, VI = 364
+	 -> Part[5] C  = 0.0551647, E  = 0.0460754, VS = 2253, VI = 222
+		 [Regular sampling] Number of clipping planes 16
+
+			 Best  0013 T=0.048442 C=0.048365 B=0.000076 S=0.000000 (0.0, 0.0, 1.0, -0.003)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0003 T=0.048350 C=0.048290 B=0.000060 S=0.000000 (0.0, 0.0, 1.0, -0.002)
+
+	 Subdivision level 8
+	 -> Part[0] C  = 0.0335498, E  = 0.0334778, VS = 1637, VI = 138
+		 [Regular sampling] Number of clipping planes 13
+
+			 Best  0006 T=0.027794 C=0.027751 B=0.000042 S=0.000000 (0.0, 1.0, 0.0, 0.010)
+
+		 [Refining] Number of clipping planes 9
+
+			 Best  0005 T=0.026721 C=0.026683 B=0.000038 S=0.000000 (0.0, 1.0, 0.0, 0.008)
+
+	 -> Part[1] C  = 0.0170688, E  = 0.0131089, VS = 641, VI = 59
+		 [Regular sampling] Number of clipping planes 12
+
+			 Best  0008 T=0.009218 C=0.008874 B=0.000009 S=0.000336 (0.0, 1.0, 0.0, -0.009)
+
+		 [Refining] Number of clipping planes 8
+
+			 Best  0003 T=0.007674 C=0.007330 B=0.000008 S=0.000336 (0.0, 1.0, 0.0, -0.008)
+
+	 Subdivision level 9
+	 -> Part[0] C  = 0.00297388, E  = 0.0061761, VS = 302, VI = 26
+	 -> Part[1] C  = 0.0248894, E  = 0.0275062, VS = 1345, VI = 102
+	 -> Part[2] C  = 0.00704244, E  = 0.0109411, VS = 535, VI = 56
+	 -> Part[3] C  = 0.00105508, E  = 0.00216777, VS = 106, VI = 3
++ Generate 16 convex-hulls 
+	 time 0.887505s
++ Merge Convex Hulls
+	 time 0.0380014s
++ Simplify 16 convex-hulls 
+		 Simplify CH[00000] 89 V, 174 T
+		 Simplify CH[00001] 45 V, 86 T
+		 Simplify CH[00002] 101 V, 198 T
+		 Simplify CH[00003] 46 V, 88 T
+		 Simplify CH[00004] 29 V, 54 T
+		 Simplify CH[00005] 71 V, 138 T
+		 Simplify CH[00006] 50 V, 96 T
+		 Simplify CH[00007] 42 V, 80 T
+		 Simplify CH[00008] 19 V, 34 T
+		 Simplify CH[00009] 52 V, 100 T
+		 Simplify CH[00010] 41 V, 78 T
+		 Simplify CH[00011] 66 V, 128 T
+		 Simplify CH[00012] 35 V, 66 T
+		 Simplify CH[00013] 42 V, 80 T
+		 Simplify CH[00014] 46 V, 88 T
+		 Simplify CH[00015] 23 V, 42 T
+	 time 0.0741658s
++ Generate output: 16 convex-hulls 
+	 CH[00000] 56 V, 108 T
+	 CH[00001] 35 V, 66 T
+	 CH[00002] 64 V, 124 T
+	 CH[00003] 34 V, 64 T
+	 CH[00004] 21 V, 38 T
+	 CH[00005] 47 V, 90 T
+	 CH[00006] 35 V, 66 T
+	 CH[00007] 31 V, 58 T
+	 CH[00008] 14 V, 24 T
+	 CH[00009] 35 V, 66 T
+	 CH[00010] 32 V, 60 T
+	 CH[00011] 42 V, 80 T
+	 CH[00012] 29 V, 54 T
+	 CH[00013] 37 V, 70 T
+	 CH[00014] 32 V, 60 T
+	 CH[00015] 18 V, 32 T

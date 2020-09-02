@@ -1,0 +1,1349 @@
+<?xml version="1.0" ?>
+<robot name="can_024">
+  <material name="color">
+    <color rgba=".5 .5 .5 1"/>
+  </material>
+
+  <link name="base_link">
+    <contact>
+      <lateral_friction value="1.0"/>
+      <rolling_friction value="0.001"/>
+      <spinning_friction value="0.001"/>
+      <inertia_scaling value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-4.61297e-05 -1.34918e-05 0.00758544"/>
+       <mass value="0.1"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+    </inertial>
+
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_0_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_1_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_2_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_3_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_4_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_5_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_6_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_7_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_8_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_9_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_10_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_11_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_12_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_13_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_14_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_15_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_16_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_17_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_18_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_19_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_20_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_21_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_22_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_23_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_24_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_25_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_26_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_27_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_28_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_29_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_30_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_31_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_32_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_33_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_34_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_35_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_36_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_37_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_38_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_39_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_40_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_41_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_42_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_43_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_44_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_45_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_46_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_47_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_48_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_49_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_50_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_51_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_52_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_53_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_54_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_55_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_56_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_57_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_58_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_59_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_60_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_61_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_62_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_63_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_64_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_65_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_66_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_67_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_68_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_69_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_70_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_71_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_72_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_73_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_74_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_75_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_76_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_77_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_78_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_79_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_80_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_81_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_82_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_83_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_84_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_85_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_86_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_87_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_88_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_89_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_90_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_91_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_92_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_93_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_94_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_95_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_96_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_97_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_98_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_99_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_100_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_101_of_102.obj" scale="1 1 1"/>
+      </geometry>
+      <material name="color"/>
+    </visual>
+
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_0_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_1_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_2_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_3_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_4_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_5_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_6_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_7_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_8_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_9_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_10_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_11_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_12_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_13_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_14_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_15_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_16_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_17_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_18_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_19_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_20_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_21_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_22_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_23_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_24_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_25_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_26_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_27_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_28_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_29_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_30_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_31_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_32_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_33_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_34_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_35_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_36_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_37_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_38_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_39_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_40_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_41_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_42_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_43_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_44_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_45_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_46_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_47_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_48_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_49_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_50_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_51_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_52_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_53_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_54_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_55_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_56_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_57_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_58_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_59_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_60_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_61_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_62_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_63_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_64_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_65_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_66_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_67_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_68_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_69_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_70_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_71_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_72_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_73_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_74_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_75_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_76_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_77_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_78_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_79_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_80_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_81_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_82_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_83_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_84_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_85_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_86_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_87_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_88_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_89_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_90_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_91_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_92_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_93_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_94_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_95_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_96_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_97_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_98_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_99_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_100_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="can_024_vhacd_101_of_102.obj" scale="1 1 1"/>
+      </geometry>
+    </collision>
+
+  </link>
+</robot>

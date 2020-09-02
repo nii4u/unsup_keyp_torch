@@ -21,8 +21,12 @@ class VideoRecorder(object):
         self.enabled = self.dir_name is not None and enabled
 
     def record(self, env, crop=(80,350)):
-        frame = env.render(mode='rgb_array')
+        frame = env.render(mode='rgb_array') 
         if crop: frame = frame[crop[0]:crop[1], crop[0]:crop[1]]
+        print('=================')
+        print(frame.shape)
+        print(len(frame), frame.size)
+        print('=============')
         frame = img_as_ubyte(resize(frame, (self.height, self.width)))
         self.frames.append(frame)
 
