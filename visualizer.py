@@ -444,7 +444,7 @@ def viz_track(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100, sav
         ax1.clear()
 
         f1 = ax1.imshow(img)
-        f2 = ax1.scatter(keypoints[:, 0], keypoints[:, 1], c=mu, cmap='Greens')
+        f2 = ax1.scatter(keypoints[:, 0], keypoints[:, 1], c=mu, s=mu*100, cmap='Wistia') #Paired
 
         f4 = []
         if annotate:
@@ -474,6 +474,7 @@ def viz_track(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100, sav
 def viz_all(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100, save_path=None):
     print(img_seq.shape, pred_img_seq.shape, keyp_seq.shape)
     print("Loss Seq: ", np.sum(np.square(img_seq - pred_img_seq))/(img_seq.shape[0]))
+   # print("video saved")  # added print
     n = img_seq.shape[0]
 
     fig = plt.figure()
