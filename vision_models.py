@@ -7,7 +7,7 @@ import ops
 
 class ImageEncoder(nn.Module):
     def __init__(self, input_shape,
-                 initial_num_filters=32,
+                 initial_num_filters=64, #initial was 32
                  output_map_width=16,
                  layers_per_scale=1, debug=False,
                  **conv_layer_kwargs):
