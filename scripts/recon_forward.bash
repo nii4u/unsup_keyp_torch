@@ -10,10 +10,13 @@
 args="$*"
 nvidia-smi -L
 
-cd /home/lloyd/git-repos/unsup_keyp_torch/
+
+
+source /scratch/srinath/venvs/tf1-dev/bin/activate
+cd ~/git-repos/unsup_keyp_torch/
 
 python train_keyp_pred.py --heatmap_reg 5e-2 --seed $(($SLURM_ARRAY_TASK_ID * 5)) $args
-#job-seq-%A_%a.out
+
 PYTHON_EXIT_CODE=$?
 
 exit $PYTHON_EXIT_CODE
