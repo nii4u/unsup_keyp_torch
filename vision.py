@@ -239,8 +239,9 @@ class KeypPredictor(nn.Module):
             keyp_t = keyp_seq[:, t] # batch_size x num_keyp x 2
             keyp_t = keyp_t.reshape(batch_size, -1) # batch_size x (num_keyp*2)
             action_t = action_seq[:, t] # batch_size x action_dim
-
+          
             x = torch.cat((keyp_t, action_t), dim=1)
+            
             x = F.relu(self.fc1(x))
             x = F.relu(self.fc2(x))
             x = self.fc3(x)

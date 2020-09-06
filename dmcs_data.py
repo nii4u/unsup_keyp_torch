@@ -1,10 +1,10 @@
 import argparse
 import os
 from absl import logging
-import dmc2gym
+#import dmc2gym
 import imageio
-#import mujoco_py
-#from gym.wrappers import Monitor
+import mujoco_py
+from gym.wrappers import Monitor
 from video_env import VideoRecorder
 import numpy as np
 import random
@@ -94,7 +94,7 @@ def get_frame(env, crop=(80,350), size=(64,64)):
 
 def collect_data_fetch(args):
     #env = gym.make("FetchPushCustom-v1", n_substeps=20)
-    env = gym.make("FetchPickAndPlace-v1")
+    #env = gym.make("FetchPickAndPlace-v1")
     #env = gym.make("FetchReach-v1")
     #env = gym.make("FetchSlide-v1")
     #env = gym.make("HandManipulatePen-v0")
@@ -109,7 +109,7 @@ def collect_data_fetch(args):
 
     video = VideoRecorder(args.dir_vid_name, height=args.image_size, width=args.image_size)
     crop = (50, 350)
-    size = (128, 128)
+    size = (64, 64)
 
     for i in range(args.num_episodes):
         frames = []
@@ -321,7 +321,7 @@ def parse_args():
     parser.add_argument('--image_size', type=int, default=128) 
     parser.add_argument('--action_repeat', type=int, default=1)
 
-    parser.add_argument("--dir_name", default='data/sawyer_lift_150')
+    parser.add_argument("--dir_name", default='data/sawyer_lift')
     parser.add_argument("--dir_vid_name", default='vids_env')
     parser.add_argument("--num_episodes", type=int, default=150)  #default is 1
     parser.add_argument("--trial", default="")

@@ -84,6 +84,7 @@ class KeypointModel(pl.LightningModule):
         data = batch
         img_seq = data['image']
         action_seq = data['action']
+        print('action sequence', action_seq.shape)
 
         keypoints_seq, heatmaps_seq, reconstructed_img_seq, \
         pred_img_seq, pred_keyp_seq = self.forward(img_seq, action_seq)
@@ -284,7 +285,7 @@ def main(args):
     print("Log path: ", log_dir, "Checkpoint Dir: ", checkpoint_dir)
 
     num_timsteps = cfg.observed_steps + cfg.predicted_steps
-    data_shape = {'image': (None, num_timsteps, 3, 64, 64)}
+    data_shape = {'image': (None, num_timsteps, 3, cfg.image.height, cfg.image.width)}
     cfg.data_shapes = data_shape
 
     model = KeypointModel(cfg)

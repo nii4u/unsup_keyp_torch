@@ -7,7 +7,7 @@ import ops
 
 class ImageEncoder(nn.Module):
     def __init__(self, input_shape,
-                 initial_num_filters=64, #initial was 32
+                 initial_num_filters=32, #initial was 32
                  output_map_width=16,
                  layers_per_scale=1, debug=False,
                  **conv_layer_kwargs):
@@ -21,18 +21,20 @@ class ImageEncoder(nn.Module):
                     input_shape[1], output_map_width, input_shape[1] / output_map_width))
 
         C, H, W = input_shape
-
         layers = []
         layers.extend([nn.Conv2d(C, initial_num_filters, kernel_size=3, padding=1), nn.LeakyReLU(0.2)])
+        print('layers-1', layers)
         for _ in range(layers_per_scale):
+            
             layers.extend([nn.Conv2d(initial_num_filters, initial_num_filters, kernel_size=3, padding=1),
                           nn.LeakyReLU(0.2)])
+        print('layers-2',layers)         
 
         width = W
         num_filters = initial_num_filters
         while width > output_map_width:
             # Reduce resolution:
-            layers.extend([nn.Conv2d(num_filters, 2*num_filters, stride=2, kernel_size=3, padding=1),
+            layers.extend([nn.Conv2d(num_filters, 2 * num_filters, stride=2, kernel_size=3, padding=1), #removed the 2 multiplying num_filters
                           nn.LeakyReLU(0.2)])
 
             num_filters *= 2
@@ -50,7 +52,6 @@ class ImageEncoder(nn.Module):
 
     def forward(self, x):
         if self.debug: print("Encoder Input shape: ", x.shape)
-
         x = self.encoder(x)
         if self.debug: print("Encoded Image shape: ", x.shape)
 
