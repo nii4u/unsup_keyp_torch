@@ -83,7 +83,7 @@ class KeypointModel(pl.LightningModule):
     def step(self, batch, batch_idx, is_train=True):
         data = batch
         img_seq = data['image']
-        action_seq = data['action']       
+        action_seq = data['action']
         keypoints_seq, heatmaps_seq, reconstructed_img_seq, \
         pred_img_seq, pred_keyp_seq = self.forward(img_seq, action_seq)
 
