@@ -50,6 +50,7 @@ class ImagesToKeypEncoder(nn.Module):
         for img in img_list:
             img = ops.add_coord_channels(img)
             encoded = self.image_encoder(img)
+            # print('encoded:', encoded.shape)
             heatmaps = self.feats_heatmap(encoded)
 
             if self.debug: print("Heatmaps shape:", heatmaps.size())
@@ -239,7 +240,11 @@ class KeypPredictor(nn.Module):
             keyp_t = keyp_seq[:, t] # batch_size x num_keyp x 2
             keyp_t = keyp_t.reshape(batch_size, -1) # batch_size x (num_keyp*2)
             action_t = action_seq[:, t] # batch_size x action_dim
+<<<<<<< HEAD
           
+=======
+           
+>>>>>>> 640806a9c20cf8c8ac21302231f53d8a0add1237
             x = torch.cat((keyp_t, action_t), dim=1)
             
             x = F.relu(self.fc1(x))

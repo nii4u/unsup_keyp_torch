@@ -21,20 +21,36 @@ class ImageEncoder(nn.Module):
                     input_shape[1], output_map_width, input_shape[1] / output_map_width))
 
         C, H, W = input_shape
+<<<<<<< HEAD
         layers = []
         layers.extend([nn.Conv2d(C, initial_num_filters, kernel_size=3, padding=1), nn.LeakyReLU(0.2)])
         print('layers-1', layers)
+=======
+
+
+        layers = []
+        layers.extend([nn.Conv2d(C, initial_num_filters, kernel_size=3, padding=1), nn.LeakyReLU(0.2)])
+     
+>>>>>>> 640806a9c20cf8c8ac21302231f53d8a0add1237
         for _ in range(layers_per_scale):
             
             layers.extend([nn.Conv2d(initial_num_filters, initial_num_filters, kernel_size=3, padding=1),
                           nn.LeakyReLU(0.2)])
+<<<<<<< HEAD
         print('layers-2',layers)         
 
+=======
+        
+>>>>>>> 640806a9c20cf8c8ac21302231f53d8a0add1237
         width = W
         num_filters = initial_num_filters
         while width > output_map_width:
             # Reduce resolution:
+<<<<<<< HEAD
             layers.extend([nn.Conv2d(num_filters, 2 * num_filters, stride=2, kernel_size=3, padding=1), #removed the 2 multiplying num_filters
+=======
+            layers.extend([nn.Conv2d(num_filters, 2 * num_filters, stride=2, kernel_size=3, padding=1),
+>>>>>>> 640806a9c20cf8c8ac21302231f53d8a0add1237
                           nn.LeakyReLU(0.2)])
 
             num_filters *= 2
@@ -52,6 +68,10 @@ class ImageEncoder(nn.Module):
 
     def forward(self, x):
         if self.debug: print("Encoder Input shape: ", x.shape)
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 640806a9c20cf8c8ac21302231f53d8a0add1237
         x = self.encoder(x)
         if self.debug: print("Encoded Image shape: ", x.shape)
 
