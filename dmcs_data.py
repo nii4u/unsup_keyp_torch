@@ -58,10 +58,7 @@ def collect_data(args):
 
             action = env.action_space.sample()
             next_obs, reward, done, _ = env.step(action)
-            # print('================================')
-            # print(env)
-            # print('================================')
-            if i < 10: video.record(env)  
+            if i < 10: video.record(env)
 
             frames.append(obs)
             actions.append(action)
@@ -95,13 +92,8 @@ def get_frame(env, crop=(80,350), size=(64,64)):
 def collect_data_fetch(args):
     #env = gym.make("FetchPushCustom-v1", n_substeps=20)
     #env = gym.make("FetchPickAndPlace-v1")
-    #env = gym.make("FetchReach-v1")
-    #env = gym.make("FetchSlide-v1")
-    #env = gym.make("HandManipulatePen-v0")
-    #env = gym.make("Acrobot-v1")
-    #env = gym.make("CartPole-v0")
-
-
+    env = gym.make("FetchReach-v1")
+    #env = SawyerReachPushPickPlaceEnv()
 
     np.random.seed(args.seed)
     random.seed(args.seed)

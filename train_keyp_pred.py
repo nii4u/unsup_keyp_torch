@@ -84,6 +84,7 @@ class KeypointModel(pl.LightningModule):
         data = batch
         img_seq = data['image']
         action_seq = data['action']
+        
         keypoints_seq, heatmaps_seq, reconstructed_img_seq, \
         pred_img_seq, pred_keyp_seq = self.forward(img_seq, action_seq)
 
@@ -315,7 +316,7 @@ def main(args):
                       val_percent_check=0.3,
                       track_grad_norm=2,
                       num_sanity_val_steps = 0,
-                      show_progress_bar=True)  
+                      show_progress_bar=True)
     trainer.fit(model)
     save_path = os.path.join(checkpoint_dir, "model_final_" + str(args.num_steps) + ".ckpt")
     print("Saving model finally:")
