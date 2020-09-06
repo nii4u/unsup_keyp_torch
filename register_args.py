@@ -24,7 +24,7 @@ def get_argparse(force_exp_name=True):
 
     parser.add_argument("--num_keypoints", type=int, default=64, help="Number of keypoints to encode")
     parser.add_argument("--timesteps", type=int, default=8, help="Number of observed steps")
-    parser.add_argument("--action_dim", type=int, default=4)
+    parser.add_argument("--action_dim", type=int, default=8)
 
     parser.add_argument("--heatmap_reg", type=float, default=0.1, help="Coeff for L1 loss on heatmap")
     parser.add_argument("--clipnorm", type=float, default=10.0)
