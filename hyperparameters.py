@@ -68,7 +68,8 @@ def get_config(FLAGS):
     # Image sequence parameters:
     cfg.observed_steps = FLAGS.timesteps
     cfg.predicted_steps = FLAGS.timesteps
-
+    cfg.image.width = 64
+    cfg.image.height = 64
     # Keypoint encoding settings:
     cfg.num_keypoints = FLAGS.num_keypoints
     cfg.heatmap_width = 16
