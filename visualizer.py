@@ -444,7 +444,7 @@ def viz_track(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100, sav
         ax1.clear()
 
         f1 = ax1.imshow(img)
-        f2 = ax1.scatter(keypoints[:, 0], keypoints[:, 1], c=mu, s=mu*100, cmap='Wistia') #Paired
+        f2 = ax1.scatter(keypoints[:, 0], keypoints[:, 1], c=mu, s=mu*100, cmap='gist_rainbow') #Paired, gist_rainbow, Wistia
 
         f4 = []
         if annotate:

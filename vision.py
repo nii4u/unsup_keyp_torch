@@ -343,8 +343,8 @@ def run(args):
 
     utils.set_seed_everywhere(args.seed)
 
-    imgs_to_keyp_model = ImagesToKeypEncoder(cfg, (8, 3, 64, 64), debug=True)
-    keyp_to_imgs_model = KeypToImagesDecoder(cfg, (8, 3, 64, 64), debug=True)
+    imgs_to_keyp_model = ImagesToKeypEncoder(cfg, (8, 3, 128, 128), debug=True) #8, 3, 64, 64
+    keyp_to_imgs_model = KeypToImagesDecoder(cfg, (8, 3, 128, 128), debug=True) #8, 3, 64, 64
 
     keyp_pred_net = KeypPredictor(cfg)
     keyp_inverse_net = KeypInverseModel(cfg)
@@ -354,8 +354,8 @@ def run(args):
     print(keyp_pred_net)
 
     # summary(model, input_size=(2, 3, 64, 64))
-    img = 0.5*torch.ones((1, 4, 3, 64, 64))
-    action = 0.4*torch.ones((1, 4, 4))
+    img = 0.5*torch.ones((1, 8, 3, 128, 128)) #1, 4, 3, 64, 64
+    action = 0.4*torch.ones((1, 8, 8)) #(1,4,4)
     k, h = imgs_to_keyp_model(img)
 
     r = keyp_to_imgs_model(k, img[:, 0], k[:, 0])

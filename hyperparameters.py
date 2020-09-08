@@ -68,10 +68,12 @@ def get_config(FLAGS):
     # Image sequence parameters:
     cfg.observed_steps = FLAGS.timesteps
     cfg.predicted_steps = FLAGS.timesteps
+    cfg.image_width = 128
+    cfg.image_height = 128
 
     # Keypoint encoding settings:
     cfg.num_keypoints = FLAGS.num_keypoints
-    cfg.heatmap_width = 16
+    cfg.heatmap_width = 32
     cfg.heatmap_regularization = FLAGS.heatmap_reg
     cfg.keypoint_width = 1.5
     cfg.num_encoder_filters = 32
@@ -87,7 +89,7 @@ def get_config(FLAGS):
     cfg.kl_annealing_steps = 1000
     cfg.use_deterministic_belief = False
     cfg.scheduled_sampling_ramp_steps = (
-    cfg.steps_per_epoch * int(cfg.num_epochs * 0.8))
+        cfg.steps_per_epoch * int(cfg.num_epochs * 0.8))
     cfg.scheduled_sampling_p_true_start_obs = 1.0
     cfg.scheduled_sampling_p_true_end_obs = 0.1
     cfg.scheduled_sampling_p_true_start_pred = 1.0
