@@ -92,6 +92,7 @@ class KeypToImagesDecoder(nn.Module):
             input_shape=(im_C, im_H, im_W),
             initial_num_filters=cfg.num_encoder_filters,
             layers_per_scale=cfg.layers_per_scale,
+          #  output_map_width=cfg.heatmap_width,
             **cfg.conv_layer_kwargs)
 
         kwargs = dict(cfg.conv_layer_kwargs)
@@ -114,6 +115,7 @@ class KeypToImagesDecoder(nn.Module):
 
         if self.debug: print("Keypoints shape: ", keypoints_seq.shape)
 
+        print('\n---first_frame:',first_frame.shape)
         first_frame_features = self.appearance_feature_extractor(first_frame) # batch_size x 128 x 16 x 16
         first_frame_gaussian_maps = self.keypoints_to_maps(first_frame_keypoints) # batch_size x 64 x 16 x 16
 
@@ -124,9 +126,14 @@ class KeypToImagesDecoder(nn.Module):
             gaussian_maps = self.keypoints_to_maps(keypoints)
             if self.debug: print("Gaussian Heatmap: ", gaussian_maps.shape)
 
+            print('\n---gaussian_maps:', gaussian_maps.shape,
+                  '\n---first_frame_features:', first_frame_features.shape,
+                  '\n---first_frame_gaussian_maps:', first_frame_gaussian_maps.shape)
+
             combined_maps = torch.cat([gaussian_maps,
                                       first_frame_features,
                                       first_frame_gaussian_maps], dim=1)
+            print('\n---combined_maps:',combined_maps.shape)
 
             combined_maps = ops.add_coord_channels(combined_maps)
             if self.debug: print("Gaussian Heatmap with CoordConv: ", combined_maps.shape)
@@ -361,6 +368,7 @@ def run(args):
     r = keyp_to_imgs_model(k, img[:, 0], k[:, 0])
 
     print(k.shape, h.shape, r.shape)
+    print('action:', action.shape)
 
     pred_k = keyp_pred_net(k[Ellipsis, :2], action)
 

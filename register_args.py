@@ -22,7 +22,7 @@ def get_argparse(force_exp_name=True):
     parser.add_argument("--seed", type=int, default=0, help='Random seeed for a run')
     parser.add_argument("--log_interval", type=int, default=100)
 
-    parser.add_argument("--num_keypoints", type=int, default=64, help="Number of keypoints to encode")
+    parser.add_argument("--num_keypoints", type=int, default=16, help="Number of keypoints to encode")
     parser.add_argument("--timesteps", type=int, default=8, help="Number of observed steps")
     parser.add_argument("--action_dim", type=int, default=8)
 

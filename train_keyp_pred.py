@@ -284,7 +284,7 @@ def main(args):
     print("Log path: ", log_dir, "Checkpoint Dir: ", checkpoint_dir)
 
     num_timsteps = cfg.observed_steps + cfg.predicted_steps
-    data_shape = {'image': (None, num_timsteps, 3, cfg.image.height, cfg.image.width)}
+    data_shape = {'image': (None, num_timsteps, 3, cfg.image_height, cfg.image_width)}
     cfg.data_shapes = data_shape
 
     model = KeypointModel(cfg)

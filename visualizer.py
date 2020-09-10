@@ -7,7 +7,7 @@ import numpy as np
 
 #from keyp_resp import align_keypoints
 
-IMG_W, IMG_H = (64, 64)
+IMG_W, IMG_H = (128, 128)
 HMAP_W, HMAP_H = (16, 16)
 
 
@@ -20,7 +20,7 @@ def project_keyp(keyp):
     #x, y = x[mu >= 0.5], y[mu >= 0.5]
     x, y = 8 * x, 8 * y
     x, y = x + 8, 8 - y
-    x, y = (64 / 16) * x, (64 / 16) * y
+    x, y = (128 / 16) * x, (128 / 16) * y
 
     N = x.shape[0]
 
@@ -32,7 +32,7 @@ def project_keyp_batch(keyp):
     x, y, mu = keyp[:, :, 0], keyp[:, :, 1], keyp[:, :, 2]
     x, y = 8 * x, 8 * y
     x, y = x + 8, 8 - y
-    x, y = (64 / 16) * x, (64 / 16) * y
+    x, y = (128 / 16) * x, (128 / 16) * y
 
     b_s, N = x.shape[:2]
 
@@ -474,6 +474,7 @@ def viz_track(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100, sav
 def viz_all(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100, save_path=None):
     print(img_seq.shape, pred_img_seq.shape, keyp_seq.shape)
     print("Loss Seq: ", np.sum(np.square(img_seq - pred_img_seq))/(img_seq.shape[0]))
+    print("Video Saved") # added print
     n = img_seq.shape[0]
 
     fig = plt.figure()

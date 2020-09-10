@@ -165,8 +165,8 @@ def collect_data_robosuite(args):
         has_offscreen_renderer=True,  # off-screen renderer is required for camera observations
         ignore_done=True,  # (optional) never terminates episode
         use_camera_obs=True,  # use camera observations
-        camera_height=128,  # set camera height
-        camera_width=128,  # set camera width
+        camera_height=64,  # set camera height
+        camera_width=64,  # set camera width
         camera_name='sideview',  # use "agentview" camera sideview, frontview, birdview, eye_in_hand
         use_object_obs=False,  # no object feature when training on pixels
         control_freq=60
@@ -177,7 +177,7 @@ def collect_data_robosuite(args):
     random.seed(args.seed)
     #env.seed(args.seed)
 
-    size = (128, 128)
+    size = (64, 64)
 
     for i in range(args.num_episodes):
         frames = []
@@ -310,10 +310,10 @@ def parse_args():
     parser.add_argument('--task_name', default='lift')  #default is swing
     parser.add_argument('--seed', type=int, default=1)
     parser.add_argument('--from_pixels', type=bool, default=True)
-    parser.add_argument('--image_size', type=int, default=128) 
+    parser.add_argument('--image_size', type=int, default=64) 
     parser.add_argument('--action_repeat', type=int, default=1)
 
-    parser.add_argument("--dir_name", default='data/sawyer_128_sideview_lift')
+    parser.add_argument("--dir_name", default='data/sawyer_64_side_lift')
     parser.add_argument("--dir_vid_name", default='vids_env')
     parser.add_argument("--num_episodes", type=int, default=150)  #default is 1
     parser.add_argument("--trial", default="")
