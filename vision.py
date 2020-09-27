@@ -300,7 +300,7 @@ class KeypInverseModel(nn.Module):
     def __init__(self, cfg):
         super(KeypInverseModel, self).__init__()
 
-        H = 64
+        H = 128
         self.fc1 = nn.Linear(4*cfg.num_keypoints, H)
         self.fc2 = nn.Linear(H, H)
         self.fc3 = nn.Linear(H, cfg.action_dim)
