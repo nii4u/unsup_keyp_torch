@@ -226,7 +226,7 @@ class KeypPredictor(nn.Module):
     def __init__(self, cfg):
         super(KeypPredictor, self).__init__()
 
-        H = 32
+        H = 64
         self.fc1 = nn.Linear(2*cfg.num_keypoints + cfg.action_dim, H)
         self.fc2 = nn.Linear(H, H)
         self.fc3 = nn.Linear(H, 2*cfg.num_keypoints)
