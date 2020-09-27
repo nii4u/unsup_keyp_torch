@@ -18,7 +18,7 @@ from PIL import Image
 # opt = parser.parse_args()
 
 FRAMES_PER_VIDEO = 30
-IMG_SHAPE = (64, 64, 3)
+IMG_SHAPE = (128, 128, 3)
 
 def get_seq(dname):
     data_dir = '%s/%s' % ("data", dname)
@@ -37,9 +37,9 @@ def get_seq(dname):
                 image_name = str(i) + '/image_aux1/encoded'
                 byte_str = example.features.feature[image_name].bytes_list.value[0]
                 # img = Image.open(io.BytesIO(byte_str))
-                img = Image.frombytes('RGB', (64, 64), byte_str)
+                img = Image.frombytes('RGB', (128, 128), byte_str)
                 arr = np.array(img.getdata()).reshape(img.size[1], img.size[0], 3)
-                image_seq.append(arr.reshape(1, 64, 64, 3))
+                image_seq.append(arr.reshape(1, 128, 128, 3))
             image_seq = np.concatenate(image_seq, axis=0)
             k = k + 1
             yield f, k, image_seq

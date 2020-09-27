@@ -13,7 +13,7 @@ def project_keyp(keyp):
     #x, y = x[mu >= 0.2], y[mu >= 0.2]
     x, y = 8 * x, 8 * y
     x, y = x + 8, 8 - y
-    x, y = (64 / 16) * x, (64 / 16) * y
+    x, y = (128 / 16) * x, (128 / 16) * y
 
     N = x.shape[0]
 

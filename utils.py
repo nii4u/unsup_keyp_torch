@@ -50,7 +50,7 @@ def project_keyp(keyp):
     #x, y = x[mu >= 0.5], y[mu >= 0.5]
     x, y = 8 * x, 8 * y
     x, y = x + 8, 8 - y
-    x, y = (64 / 16) * x, (64 / 16) * y
+    x, y = (128 / 16) * x, (128 / 16) * y
 
     N = x.shape[0]
 
@@ -59,13 +59,13 @@ def project_keyp(keyp):
 
 def unproject_keyp(keyp):
     x, y = keyp[:,0], keyp[:, 1]
-    x, y = x * (16/64), y * (16/64)
+    x, y = x * (16/128), y * (16/128)
     x, y = x - 8, y - 8
     x, y = x/8, y/8
 
     return x,y
 
-def get_frame(env, crop=(50,350), size=(64,64)):
+def get_frame(env, crop=(50,350), size=(128,128)):
     frame = env.render(mode='rgb_array')
     if crop: frame = frame[crop[0]:crop[1], crop[0]:crop[1]]
     if size: frame = img_as_ubyte(resize(frame, size))
