@@ -127,3 +127,6 @@ exp_data/train_600_Epoch/2020-08-31-16-06-14/checkpoints/_ckpt_epoch_550.ckpt
 
 python test_viz.py --data_dir data/fetch_reach_25 --no_first --keyp_pred --timesteps 150 --pretrained_path exp_data/fetch_reach_16kp_track_s_0/2020-06-02-03-52-29/checkpoints/ --num_keypoints 16 --ckpt 600
 
+
+sbatch scripts/test_viz.bash --data_dir data/sawyer_64_fast/ --no_first --keyp_pred --num_steps 150 --pretrained_path exp_data/sawyer_64_fast_s_0/2020-09-17-18-57-28/checkpoints/ --num_keypoints 16 --vids_path sawyer_64_fast --timesteps 200
+

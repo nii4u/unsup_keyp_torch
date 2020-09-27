@@ -92,8 +92,8 @@ def get_frame(env, crop=(80,350), size=(128,128)):
 def collect_data_fetch(args):
     #env = gym.make("FetchPushCustom-v1", n_substeps=20)
     #env = gym.make("FetchPickAndPlace-v1")
-    #env = gym.make("FetchReach-v1")
-    env = SawyerReachPushPickPlaceEnv()
+    env = gym.make("FetchReach-v1")
+    #env = SawyerReachPushPickPlaceEnv()
 
     np.random.seed(args.seed)
     random.seed(args.seed)
@@ -306,16 +306,16 @@ def create_train_split(args):
 def parse_args():
     parser = argparse.ArgumentParser()
     # environment
-    parser.add_argument('--domain_name', default='sawyer') #default is acrobot
-    parser.add_argument('--task_name', default='lift')  #default is swing
+    parser.add_argument('--domain_name', default='fetch') #default is acrobot
+    parser.add_argument('--task_name', default='reach')  #default is swing
     parser.add_argument('--seed', type=int, default=1)
     parser.add_argument('--from_pixels', type=bool, default=True)
     parser.add_argument('--image_size', type=int, default=128) 
-    parser.add_argument('--action_repeat', type=int, default=1)
+    parser.add_argument('--action_repeat', type=int, default=100)
 
-    parser.add_argument("--dir_name", default='data/dummy')
+    parser.add_argument("--dir_name", default='data/fetch_128_reach')
     parser.add_argument("--dir_vid_name", default='vids_env')
-    parser.add_argument("--num_episodes", type=int, default=3)  #default is 1
+    parser.add_argument("--num_episodes", type=int, default=100)  #default is 1
     parser.add_argument("--trial", default="")
 
     return parser.parse_args()
@@ -323,9 +323,9 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     #collect_data(args)
-    # train_test_split(args)
+    #train_test_split(args)
 
-    #collect_data_fetch(args)
-    collect_data_robosuite(args)
+    collect_data_fetch(args)
+    #collect_data_robosuite(args)
     train_test_split(args)
     #create_train_split(args)

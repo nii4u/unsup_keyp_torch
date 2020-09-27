@@ -12,7 +12,7 @@ from skimage.transform import resize
 from skimage.util import img_as_ubyte
 
 import gym
-import fetch_env_custom
+#import fetch_env_custom
 
 
 class cpselect_recorder:
@@ -47,7 +47,7 @@ def cpselect(img1):
 
     return point_left.astype(np.float32)
 
-def get_frame(env, crop=(80,350), size=(64,64)):
+def get_frame(env, crop=(80,350), size=(128,128)):
     frame = env.render(mode='rgb_array')
     if crop: frame = frame[crop[0]:crop[1], crop[0]:crop[1]]
     #frame = img_as_ubyte(resize(frame, size))
@@ -57,10 +57,11 @@ def collect_projection_data(args):
     num_frames = args.num_frames
 
     crop = (50, 350)
-    size = (64, 64)
+    size = (128, 128)
 
     #env = gym.make("FetchPushCustom-v1", n_substeps=20)
-    env = gym.make("FetchPickAndPlace-v1")
+    #env = gym.make("FetchPickAndPlace-v1")
+    env = gym.make("FetchReach-v1")
     env.seed(args.seed)
 
     source_pts = np.zeros((2*num_frames, 3), dtype=np.float32)
@@ -107,6 +108,8 @@ def collect_projection_data_sawyer(args):
         has_renderer=False,  # no on-screen renderer
         has_offscreen_renderer=True,  # off-screen renderer is required for camera observations
         use_camera_obs=True,  # use camera observations
+        camera_height=128,  # set camera height
+        camera_width=128,  # set camera width
         camera_name='sideview',  # use "agentview" camera
         use_object_obs=True,  # no object feature when training on pixels
         gripper_visualization=True,
@@ -191,11 +194,11 @@ def check_pred(M, args):
     num_frames = args.num_frames
 
     crop = (50, 350)
-    size = (64, 64)
+    size = (128, 128)
 
     #env = gym.make("FetchPushCustom-v1", n_substeps=20)
-    env = gym.make('FetchPickAndPlace-v1')
-    #env = gym.make('FetchReach-v1')
+    #env = gym.make('FetchPickAndPlace-v1')
+    env = gym.make('FetchReach-v1')
     env.seed(args.seed)
 
     for n in range(num_frames):
@@ -228,6 +231,8 @@ def check_pred_sawyer(M, args):
         has_renderer=False,  # no on-screen renderer
         has_offscreen_renderer=True,  # off-screen renderer is required for camera observations
         use_camera_obs=True,  # use camera observations
+        camera_height=128,  # set camera height
+        camera_width=128,  # set camera width
         camera_name='sideview',  # use "agentview" camera
         use_object_obs=True,  # no object feature when training on pixels
         gripper_visualization=True,

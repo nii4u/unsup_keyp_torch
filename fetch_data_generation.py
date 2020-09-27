@@ -19,7 +19,7 @@ observations = []
 infos = []
 frames = []
 
-def get_frame(env, crop=(50,350), size=(64,64)):
+def get_frame(env, crop=(50,350), size=(128,128)):
     frame = env.render(mode='rgb_array').copy()
     if crop: frame = frame[crop[0]:crop[1], crop[0]:crop[1]]
     frame = img_as_ubyte(resize(frame, size))
@@ -217,7 +217,7 @@ def check(args):
         ax1.imshow(img_seq[-1])
         ax1.set_title("Final")
 
-        plt.show()
+        plt.show()128
 
 def split(args):
     data = np.load(os.path.join(args.dir_name, args.save_path+".npz"), allow_pickle=True)
@@ -241,8 +241,9 @@ def test_env(args):
 
     # env = gym.make('FetchPickAndPlace-v1')
     # env.seed(args.seed)
+    env = gym.make("FetchReach-v1")
 
-    env = pickle.load(open('tmp_env_state/env.pickle', 'rb'))
+    #env = pickle.load(open('tmp_env_state/env.pickle', 'rb'))
 
     #env.reset()
 
@@ -251,9 +252,9 @@ def test_env(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dir_name", default='data/goal/fetch_reach')
-    parser.add_argument("--num_iter", type=int, default=1)
-    parser.add_argument("--save_path", default="fetch_reach_goal")
+    parser.add_argument("--dir_name", default='data/goal/fetch_128_reach')
+    parser.add_argument("--num_iter", type=int, default=50)
+    parser.add_argument("--save_path", default="fetch_128_reach_goal")
     parser.add_argument("--display", action='store_true')
     parser.add_argument("--seed", type=int, default=0)
 
@@ -266,4 +267,4 @@ if __name__ == "__main__":
 
     #test_env(args)
 
-    #split(args)
+    split(args)
