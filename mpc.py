@@ -98,7 +98,7 @@ class MPC:
 def load_model(args):
     utils.set_seed_everywhere(args.seed)
     cfg = hyperparameters.get_config(args)
-    cfg.data_shapes = {'image': (None, 16, 3, 64, 64)}
+    cfg.data_shapes = {'image': (None, 4, 3, 128, 128)}
 
     args.cuda = not args.no_cuda and torch.cuda.is_available()
     device = torch.device("cuda" if args.cuda else "cpu")
@@ -179,7 +179,7 @@ def test_start_end(args):
 
 def convert_to_pixel(object_pos, M):
     object_pos = np.array([object_pos[0], object_pos[1], object_pos[2], 1]).astype(np.float32)
-    object_pixel = M.dot(object_pos)[:2] * (64.0/300.0)
+    object_pixel = M.dot(object_pos)[:2] * (128.0/300.0)
     return object_pixel
 
 
@@ -188,7 +188,7 @@ def evaluate_control_success(args):
     count = 0
 
     model = load_model(args)
-    M = np.load('tmp_data/proj.npy')
+    M = np.load('tmp_data/proj_fetch_128_reach.npy')
 
     count = 0
     num_steps = 0
@@ -283,14 +283,17 @@ def check_recon(args):
 
 def test_env(args):
 
-    env = gym.make('FetchPickAndPlace-v1')
+    #env = gym.make('FetchPickAndPlace-v1')
+    crop = (50, 350)
+    size = (128, 128)
+    env = gym.make("FetchReach-v1")
     env.seed(args.seed)
 
     #env = pickle.load(open('tmp_env_state/env.pickle', 'rb'))
 
     #env.reset()
 
-    M = np.load('tmp_data/proj.npy')
+    M = np.load('tmp_data/proj_fetch_128_reach.npy')
     x = env.reset()
     object_pos = x['achieved_goal']
     goal_pos = x['desired_goal']
@@ -298,8 +301,8 @@ def test_env(args):
     object_pos = np.array([object_pos[0], object_pos[1], object_pos[2], 1]).astype(np.float32)
     goal_pos = np.array([goal_pos[0], goal_pos[1], goal_pos[2], 1]).astype(np.float32)
 
-    object_pixel = M.dot(object_pos)[:2] * (64.0/300.0)
-    goal_pixel = M.dot(goal_pos)[:2] * (64.0/300.0)
+    object_pixel = M.dot(object_pos)[:2] * (128.0/300.0)
+    goal_pixel = M.dot(goal_pos)[:2] * (128.0/300.0)
 
     plt.imshow(utils.get_frame(env))
     plt.scatter(object_pixel[0], object_pixel[1], color='y')
@@ -310,8 +313,8 @@ if __name__ == "__main__":
     from register_args import get_argparse
     args = get_argparse(False).parse_args()
 
-    args.data_dir = "data/goal/fetch_reach_sep"
-    args.save_path = "fetch_reach_goal_0"
+    args.data_dir = "data/goal/fetch_128_reach_sep"
+    args.save_path = "fetch_128_reach_goal_0"
     args.max_episode_steps = 50
     args.horizon = 25
     args.inv_fwd = False

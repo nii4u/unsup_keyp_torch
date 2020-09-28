@@ -217,7 +217,7 @@ def check(args):
         ax1.imshow(img_seq[-1])
         ax1.set_title("Final")
 
-        plt.show()128
+        plt.show()
 
 def split(args):
     data = np.load(os.path.join(args.dir_name, args.save_path+".npz"), allow_pickle=True)
@@ -253,7 +253,7 @@ def test_env(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--dir_name", default='data/goal/fetch_128_reach')
-    parser.add_argument("--num_iter", type=int, default=50)
+    parser.add_argument("--num_iter", type=int, default=51)
     parser.add_argument("--save_path", default="fetch_128_reach_goal")
     parser.add_argument("--display", action='store_true')
     parser.add_argument("--seed", type=int, default=0)

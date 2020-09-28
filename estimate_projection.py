@@ -267,15 +267,21 @@ if __name__ == "__main__":
     # cpselect(img_seq[0])
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dir_name", default='data/projection/fetch_pick')
-    parser.add_argument("--num_frames", type=int, default=1)
-    parser.add_argument("--save_path", default="fetch_pick_proj")
+    parser.add_argument("--dir_name", default='data/projection/fetch_128_reach')
+    parser.add_argument("--num_frames", type=int, default=51)
+    parser.add_argument("--save_path", default="fetch_128_reach_proj")
     parser.add_argument("--seed", type=int, default=0)
 
     args = parser.parse_args()
+    
     #collect_projection_data_sawyer(args)
+    # args.save_path = "sawyer_reach_joint_proj"
+    # M = learn_proj_matrix(args)
+    # np.save("tmp_data/proj_sawyer.npy", M)
+    # check_pred_sawyer(M, args)
 
-    args.save_path = "sawyer_reach_joint_proj"
+    collect_projection_data(args)
+    args.save_path = "fetch_128_reach_proj"
     M = learn_proj_matrix(args)
-    np.save("tmp_data/proj_sawyer.npy", M)
-    check_pred_sawyer(M, args)
+    np.save("tmp_data/proj_fetch_128_reach.npy", M)
+    check_pred(M, args)
