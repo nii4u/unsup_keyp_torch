@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # import gym
 # from gym.envs.robotics.rotations import mat2euler, mat2quat, quat2euler, euler2quat
 
-def global2label(obj_pos, cam_pos, cam_ori, output_size=[64, 64], fov=90, s=1):
+def global2label(obj_pos, cam_pos, cam_ori, output_size=[500, 500], fov=90, s=1):
     """
     :param obj_pos: 3D coordinates of the joint from MuJoCo in nparray [m]
     :param cam_pos: 3D coordinates of the camera from MuJoCo in nparray [m]
@@ -81,9 +81,10 @@ def gkern(h, w, center, sigma=1):
 
 if __name__ == "__main__":
     import gym
-    import fetch_env_custom
+    #import fetch_env_custom
 
-    env = gym.make("FetchPushCustom-v1")
+    #env = gym.make("FetchPushCustom-v1")
+    env = gym.make("FetchReach-v1")
     # Use self.sim.data.get_geom_xpos("object") to get the object pos (mujoco-py env)
     x = env.reset()
     for t in range(200):

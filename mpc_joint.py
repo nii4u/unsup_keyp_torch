@@ -24,7 +24,7 @@ import robosuite as suite
 
 
 class MPC:
-    def __init__(self, model, goal_state, action_dim=4, H=50):
+    def __init__(self, model, goal_state, action_dim=8, H=50):
         """
 
         :param model: f(s_t, a_t) -> del(s_t) ; s_{t+1} = s_t + del(s_t)
@@ -79,7 +79,7 @@ class MPC:
         min_cost = costs[min_idx]
         #print(min_cost)
 
-        return actions_batch[min_idx][0]
+        return actions_batch[min_idx][0], next_state_batch[min_idx][1]
 
     def cost_fn(self, state_batch, goal_state):
         """
@@ -112,13 +112,13 @@ def convert_img_torch(img_seq):
 
 def convert_to_pixel(object_pos, M):
     object_pos = np.array([object_pos[0], object_pos[1], object_pos[2], 1]).astype(np.float32)
-    object_pixel = M.dot(object_pos)[:2] * (64.0/256.0)
+    object_pixel = M.dot(object_pos)[:2] * (100.0/100.0)
     return object_pixel
 
 def load_model(args):
     utils.set_seed_everywhere(args.seed)
     cfg = hyperparameters.get_config(args)
-    cfg.data_shapes = {'image': (None, 16, 3, 64, 64)}
+    cfg.data_shapes = {'image': (None, 4, 3, 128, 128)}
 
     args.cuda = not args.no_cuda and torch.cuda.is_available()
     device = torch.device("cuda" if args.cuda else "cpu")
@@ -145,7 +145,7 @@ def evaluate_control_success_sawyer(args):
     goal_img_seq = convert_img_torch(goal_img_seq)
 
     model = load_model(args)
-    M = np.load('tmp_data/proj_sawyer.npy')
+    M = np.load('tmp_data/proj_sawyer_128_reach_large.npy')
 
     env = suite.make(
         "SawyerLift",
@@ -153,8 +153,8 @@ def evaluate_control_success_sawyer(args):
         has_offscreen_renderer=True,  # off-screen renderer is required for camera observations
         ignore_done=True,  # (optional) never terminates episode
         use_camera_obs=True,  # use camera observations
-        camera_height=64,  # set camera height
-        camera_width=64,  # set camera width
+        camera_height=128,  # set camera height
+        camera_width=128,  # set camera width
         camera_name='sideview',  # use "agentview" camera
         use_object_obs=False,  # no object feature when training on pixels
         control_freq=60
@@ -177,34 +177,50 @@ def evaluate_control_success_sawyer(args):
             print("To reach Distance:", np.linalg.norm(cur_pos_w - goal_pos_w))
 
             keyp = mpc.get_keyp_state( img_as_ubyte(rotate(x['image'], 180)))
+            keyp_seq = []
+            pred_keyp_seq = []
             frames = []
             reached = False
             for t in range(args.max_episode_steps):
-                action = mpc.select_min_cost_action(keyp).cpu().numpy()
+                # action = mpc.select_min_cost_action(keyp).cpu().numpy()
+                # next_keyp = mpc.predict_next_states(keyp, action)
+                action, next_keyp = mpc.select_min_cost_action(keyp)
+                action, next_keyp = action.cpu().numpy(), next_keyp.cpu().numpy()
+
                 x, _, done, _ = env.step(action)
                 im = img_as_ubyte(rotate(x['image'], 180))
                 frames.append(im)
+
                 keyp = mpc.get_keyp_state(im)
+
+                keyp_seq.append(keyp)
+                pred_keyp_seq.append(next_keyp)
 
                 cur_pos_w = get_grip_pos(env)
                 dist = np.linalg.norm(cur_pos_w - goal_pos_w)
                 #print(dist)
-                if dist < 0.05:
+                if dist < 0.08:
                     reached = True
                     break
 
-            frames = np.stack(frames)
+            frames   = np.stack(frames)
+            keyp_seq = np.stack(keyp_seq)
+            
+            fake_mu = np.zeros((keyp_seq.shape[0], keyp_seq.shape[1], 1))
+            keyp_seq = np.concatenate([keyp_seq, fake_mu], axis=2)
+            pred_keyp_seq = np.concatenate([pred_keyp_seq, fake_mu], axis=2)
+
             if reached:
                 print("Reached")
                 count += 1
             else:
                 print("Did not reach")
 
-            #l_dir = args.train_dir if args.is_train else args.test_dir
-            #save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
-            #if not os.path.isdir(save_dir): os.makedirs(save_dir)
-            #save_path = os.path.join(save_dir, l_dir + "_{}_{}_seed_{}.mp4".format(i,reached,  args.seed))
-            #viz_imgseq_goal(frames, goal_pos_pixel, unnormalize=False, save_path=save_path)
+            l_dir = args.train_dir if args.is_train else args.test_dir
+            save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
+            if not os.path.isdir(save_dir): os.makedirs(save_dir)
+            save_path = os.path.join(save_dir, l_dir + "_{}_{}_seed_{}.mp4".format(i,reached,  args.seed))
+            viz_imgseq_goal(frames, keyp_seq, pred_keyp_seq, goal_pos_pixel, unnormalize=False, save_path=save_path)
 
     print("Success Rate: ", float(count) / num_goals)
 
@@ -215,8 +231,8 @@ def get_start_frame(return_pos=False):
         has_offscreen_renderer=True,  # off-screen renderer is required for camera observations
         ignore_done=True,  # (optional) never terminates episode
         use_camera_obs=True,  # use camera observations
-        camera_height=64,  # set camera height
-        camera_width=64,  # set camera width
+        camera_height=128,  # set camera height
+        camera_width=128,  # set camera width
         camera_name='sideview',  # use "agentview" camera
         use_object_obs=False,  # no object feature when training on pixels
         control_freq=60
@@ -258,7 +274,7 @@ def check_start_goal(start, goal):
 
 def test_start_end(args):
     data = np.load(os.path.join(args.data_dir, args.save_path + ".npz"), allow_pickle=True)
-    M = np.load('tmp_data/proj_sawyer.npy')
+    M = np.load('tmp_data/proj_sawyer_128_reach_large.npy')
 
     img_seq = data['image']
     grip_pos_seq = data['grip_pos']
@@ -293,7 +309,7 @@ def sample_goal_frames(args):
 
     goal_imgs = np.stack(goal_imgs)
 
-    dir_name = "data/goal/sawyer_reach_joint"
+    dir_name = "data/goal/sawyer_128_reach_large_joint"
     if not os.path.isdir(dir_name): os.makedirs(dir_name)
 
 
@@ -307,8 +323,8 @@ def sample_goal_frames_env(args):
         has_offscreen_renderer=True,  # off-screen renderer is required for camera observations
         ignore_done=True,  # (optional) never terminates episode
         use_camera_obs=True,  # use camera observations
-        camera_height=64,  # set camera height
-        camera_width=64,  # set camera width
+        camera_height=128,  # set camera height
+        camera_width=128,  # set camera width
         camera_name='sideview',  # use "agentview" camera
         use_object_obs=True,  # no object feature when training on pixels
         control_freq=60
@@ -329,7 +345,7 @@ def sample_goal_frames_env(args):
 
     goal_imgs = np.stack(goal_imgs)
     grip_pos_l = np.stack(grip_pos_l)
-    dir_name = "data/goal/sawyer_reach_joint"
+    dir_name = "data/goal/sawyer_128_reach_large_joint"
     if not os.path.isdir(dir_name): os.makedirs(dir_name)
 
     data = {'image': goal_imgs, 'grip_pos': grip_pos_l}
@@ -340,11 +356,11 @@ if __name__ == "__main__":
     args = get_argparse(False).parse_args()
 
     #args.data_dir = "data/sawyer_reach_side_75/test"
-    args.data_dir = "data/goal/sawyer_reach_joint"
-    args.save_path = "sawyer_reach_joint_goal"
+    args.data_dir = "data/goal/sawyer_128_reach_large_joint"
+    args.save_path = "sawyer_128_reach_large_joint_goal"
     args.max_episode_steps = 100
-    args.horizon = 25
-    args.inv_fwd = True
+    args.horizon = 50
+    args.inv_fwd = False
 
     utils.set_seed_everywhere(args.seed)
 

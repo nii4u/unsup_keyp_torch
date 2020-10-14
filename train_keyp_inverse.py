@@ -290,7 +290,7 @@ def main(args):
         checkpoint_path = get_latest_checkpoint(args.pretrained_path)
         import json
         model = KeypointModel.load_from_checkpoint(checkpoint_path)
-        print(json.dumps(model.cfg, indent=4))
+        print(json.dumps(model.cfg, indent=5))
 
     print("On GPU Device: ", gpus)
     trainer = Trainer(#max_epochs=args.num_epochs,

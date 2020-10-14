@@ -30,7 +30,7 @@ class cpselect_recorder:
         self.left_y = []
 
     def handler(self, event):
-        circle = plt.Circle((event.xdata, event.ydata), color='r', radius=1)
+        circle = plt.Circle((event.xdata, event.ydata), color='r', radius=0.5)
         if event.inaxes == self.Ax0:
             self.left_x.append(event.xdata)
             self.left_y.append(event.ydata)
@@ -47,7 +47,7 @@ def cpselect(img1):
 
     return point_left.astype(np.float32)
 
-def get_frame(env, crop=(80,350), size=(128,128)):
+def get_frame(env, crop=(50,350), size=(128,128)):
     frame = env.render(mode='rgb_array')
     if crop: frame = frame[crop[0]:crop[1], crop[0]:crop[1]]
     #frame = img_as_ubyte(resize(frame, size))
@@ -114,7 +114,7 @@ def collect_projection_data_sawyer(args):
         use_object_obs=True,  # no object feature when training on pixels
         gripper_visualization=True,
         ignore_done=True,
-        control_freq=30)
+        control_freq=60)
 
     source_pts = []
     target_pts = []
@@ -131,7 +131,7 @@ def collect_projection_data_sawyer(args):
 
             if len(points) > 0:
                 source_pts.append(get_grip_pos(env))
-                target_pts.append(points[0])
+                target_pts.append(points)
                 print(len(source_pts))
 
         n += 1
@@ -184,9 +184,9 @@ def learn_proj_matrix(args):
     print('Mean squared error: %.2f' % mean_squared_error(y_test, reg.predict(X_test)))
     print('Mean squared error: %.2f' % mean_squared_error(y_test, reg.coef_.dot(X_test.T).T))
 
-    # M = np.linalg.pinv(X).dot(y)
-    # print(M, M.shape)
-    #print(np.sum(np.square(X.dot(M)-y))/X.shape[0])
+    M = np.linalg.pinv(X).dot(y)
+    print(M, M.shape)
+    print(np.sum(np.square(X.dot(M)-y))/X.shape[0])
 
     return reg.coef_
 
@@ -237,7 +237,7 @@ def check_pred_sawyer(M, args):
         use_object_obs=True,  # no object feature when training on pixels
         gripper_visualization=True,
         ignore_done=True,
-        control_freq=30)
+        control_freq=60)
 
     for n in range(num_frames):
         x = env.reset()
@@ -266,22 +266,32 @@ if __name__ == "__main__":
     # img_seq = data['image']
     # cpselect(img_seq[0])
 
+    # Use this for Fetch_128_reach environment:
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("--dir_name", default='data/projection/fetch_128_reach')
+    # parser.add_argument("--num_frames", type=int, default=51)
+    # parser.add_argument("--save_path", default="fetch_128_reach_proj")
+    # parser.add_argument("--seed", type=int, default=0)
+
+    # Use this for Sawyer_128_reach Environment:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dir_name", default='data/projection/fetch_128_reach')
-    parser.add_argument("--num_frames", type=int, default=51)
-    parser.add_argument("--save_path", default="fetch_128_reach_proj")
+    parser.add_argument("--dir_name", default='data/projection/sawyer_128_reach_randgrip')
+    parser.add_argument("--num_frames", type=int, default=3)
+    parser.add_argument("--save_path", default="sawyer_128_reach_randgrip_proj")
     parser.add_argument("--seed", type=int, default=0)
 
     args = parser.parse_args()
-    
-    #collect_projection_data_sawyer(args)
-    # args.save_path = "sawyer_reach_joint_proj"
-    # M = learn_proj_matrix(args)
-    # np.save("tmp_data/proj_sawyer.npy", M)
-    # check_pred_sawyer(M, args)
 
-    collect_projection_data(args)
-    args.save_path = "fetch_128_reach_proj"
+    # Use this for Sawyer_128_reach Environment:
+    collect_projection_data_sawyer(args)
+    args.save_path = "sawyer_128_reach_joint_randgrip_proj"
     M = learn_proj_matrix(args)
-    np.save("tmp_data/proj_fetch_128_reach.npy", M)
-    check_pred(M, args)
+    np.save("tmp_data/proj_sawyer_128_reach_randgrip.npy", M)
+    check_pred_sawyer(M, args)
+
+    # Use this for Fetch_128_reach environment:
+    # collect_projection_data(args)
+    # args.save_path = "fetch_128_reach_proj"
+    # M = learn_proj_matrix(args)
+    # np.save("tmp_data/proj_fetch_128_reach.npy", M)
+    # check_pred(M, args)

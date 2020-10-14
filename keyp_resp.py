@@ -5,7 +5,7 @@ from itertools import islice
 
 import numpy as np
 from scipy.spatial import distance
-from npeet import entropy_estimators as ee
+#from npeet import entropy_estimators as ee
 
 from visualizer import viz_track, viz_dynamic_img_top_vid, project_keyp, viz_hmap, viz_img_keyp_history
 
@@ -289,10 +289,11 @@ if __name__ == "__main__":
     #args.data_path = 'tmp_data/test_data_bair_push_15k_64kp_seed_0.npz'
     #args.data_path = 'tmp_data/test_data_sawyer_reach_75_32kp_seed_0.npz'
     #args.data_path = 'tmp_data/test_data_sawyer_reach_side_seed_0.npz'
-    args.data_path = 'tmp_data/test_data_fetch_reach_inverse_forward_hmap2_seed_0.npz'
+    #args.data_path = 'tmp_data/test_data_fetch_reach_inverse_forward_hmap2_seed_0.npz'
+    args.data_path = 'tmp_data/test_data_sawyer_128_sizecam_seed_0.npz'
     #args.exp_name = "fetch_pick_action_e_75_test"
     #args.exp_name = "sawyer_reach_side"
-    args.exp_name = "fetch_reach_inverse_forward"
+    #args.exp_name = "fetch_reach_inverse_forward"
     args.annotate = True
     args.k = 23
 

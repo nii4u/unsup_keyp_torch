@@ -261,8 +261,12 @@ def check_recon(args):
     model = load_model(args)
 
     with torch.no_grad():
-        keypoints_seq, heatmaps_seq, recon_img_seq, pred_img_seq, pred_keyp_seq = \
-            model(img_seq, action_seq)
+        if not args.inv_fwd:    
+            keypoints_seq, heatmaps_seq, recon_img_seq, pred_img_seq, pred_keyp_seq = \
+                model(img_seq, action_seq)
+        else:
+            keypoints_seq, heatmaps_seq, pred_keyp_seq, pred_action_seq = \
+                model(img_seq, action_seq)
 
         print("LOSS:", F.mse_loss(img_seq, recon_img_seq, reduction='sum') / ((img_seq.shape[0]) * img_seq.shape[1]))
         img_seq_np, recon_img_seq_np = utils.img_torch_to_numpy(img_seq), utils.img_torch_to_numpy(recon_img_seq)
@@ -319,12 +323,19 @@ if __name__ == "__main__":
     args.horizon = 25
     args.inv_fwd = False
 
+    # if args.inv_fwd:
+    #     keypoints_seq, heatmaps_seq, recon_img_seq, pred_img_seq, pred_keyp_seq = \
+    #         model(img_seq, action_seq)
+    # else:
+    #     keypoints_seq, heatmaps_seq, pred_keyp_seq,pred_action_seq = \
+    #         model(img_seq, action_seq)
+
     utils.set_seed_everywhere(args.seed)
 
-    #test_start_end(args)
+    test_start_end(args)
     #main(args)
 
-    evaluate_control_success(args)
+    #evaluate_control_success(args)
 
     #check_recon(args)
     #test_env(args)

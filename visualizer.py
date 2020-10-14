@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib.cm as cm
 import numpy as np
+#import torch
+#import torch.nn.functional as F
 
 #from keyp_resp import align_keypoints
 
@@ -99,22 +101,43 @@ def viz_imgseq(image_seq, unnormalize=False, delay=100, save_path=None):
     else:
         ani.save(save_path)
 
-def viz_imgseq_goal(image_seq, goal, unnormalize=True, delay=100, save_path=None):
-    print(image_seq.shape)
+def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, unnormalize=True, delay=100, save_path=None):
+    print('image_seq.shape:', image_seq.shape)
+    print('keyp_seq.shape:', keyp_seq.shape)
     N = image_seq.shape[0]
+    
+    # compute MSE
+    n_dim = keyp_seq.shape[1] * 2 # keyp_seq.shape[2]
+    MSE = np.sum((keyp_seq - pred_keyp_seq)**2, axis=(1,2))/n_dim
 
     fig = plt.figure()
     frames = []
     for i in range(N):
         img = image_seq[i]
-
         if unnormalize:
             img = unnormalize_image(img)
 
         f1 = plt.imshow(img)
         f2 = plt.scatter(goal[0], goal[1], color='y', marker='x', s=75)
 
-        frames.append([f1, f2])
+        #plt.title("dist:{} {}".format(cur_pos_w - goal_pos_w))
+
+        keypoints = keyp_seq[i]
+        keypoints, mu = project_keyp(keypoints)
+
+        frame_mse = MSE[i]
+        x_text, y_text = 0, 10 # text position
+        f5 = plt.text(x_text, y_text, f"Loss: {frame_mse:.6f}", fontsize = 12)
+
+        f3 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c='white')
+        # f3 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c=mu, cmap='Reds')
+
+        keypoints = pred_keyp_seq[i]
+        keypoints, mu = project_keyp(keypoints)
+        #num_keypoints = len(keypoints)
+        f4 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c='green')
+
+        frames.append([f1, f2, f3, f4, f5])
 
     ani = animation.ArtistAnimation(fig, frames, interval=delay, blit=True)
 
@@ -305,7 +328,9 @@ def viz_dynamic_img_top(img_seq, pred_img_seq, keyp_seq,save_path=None):
 
     fig = plt.figure(figsize=(20,20))
     plt.subplots_adjust(hspace=0.5)
-    fig.tight_layout()
+    fig.tight_layout()#viz_all(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100, save_path=save_path)
+            #viz_track(frames, goal_pos_pixel, unnormalize=False, save_path=save_path)
+            #viz_track(frames, img_seq, keyp, unnormalize=False, delay=100, save_path=None, annotate=False)
 
     top_5_idx = None
     gs = fig.add_gridspec(3, 3)
@@ -641,12 +666,16 @@ if __name__ == "__main__":
     #data = np.load('data/fetch_push_25hz/orig/fetch_push_1.npz')
     #data = np.load('data/fetch_pick/orig/fetch_pick_1.npz', allow_pickle=True)
     #data = np.load('data/goal/fetch_pick_sep/fetch_pick_goal_5.npz', allow_pickle=True)
-    #data = np.load('data/goal/fetch_reach_sep/fetch_reach_goal_0.npz', allow_pickle=True)
-    data = np.load('data/bair_push/orig/traj_9662_to_9917_30.npz')
+    #data = np.load('data/goal/fetch_128_reach_sep/fetch_128_reach_goal_0.npz', allow_pickle=True)
+    data = np.load("data/goal/sawyer_128_reach_joint/sawyer_128_reach_joint_goal.npz", mmap_mode='r', allow_pickle=True)
+    #data = np.load(filename, mmap_mode='r')
+    #data = np.load('data/goal/fetch_128_reach_sep/fetch_128_reach_goal_0.npz', allow_pickle=True)
+    #data = np.load('data/bair_push/orig/traj_9662_to_9917_30.npz')
     #data = np.load('data/fetch_reach/orig/fetch_reach_1.npz', allow_pickle=True)
     #data = np.load('data/bair_push/orig/traj_9662_to_9917.tfrecords_5.npz')
     #img_seq = data['img'][2]
     #img_seq = data['image']
     #img_seq = data['image'][2]
-    img_seq = data['image']
-    viz_imgseq(img_seq, delay=100, unnormalize=False)
+    #img_seq = data['image']
+    #viz_imgseq(img_seq, delay=100, unnormalize=False)
+    #viz_keyp_action_pred(img_seq, recon_img_seq, keyp_seq, pred_img_seq, pred_keyp_seq, delay=100)

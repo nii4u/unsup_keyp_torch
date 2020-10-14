@@ -57,8 +57,8 @@ class KeypointDecoder(nn.Module):
     def __init__(self, cfg):
         super(KeypointDecoder, self).__init__()
         hidden_indim = cfg.num_rnn_units + cfg.latent_code_size
-        self.hidden = nn.Linear(hidden_indim, 128)
-        self.keypoints = nn.Linear(128, cfg.num_keypoints * 3)
+        self.hidden = nn.Linear(hidden_indim, 256)
+        self.keypoints = nn.Linear(256, cfg.num_keypoints * 3)
 
     def forward(self, rnn_state, latent_code):
         x = torch.cat([rnn_state, latent_code], dim=-1)
