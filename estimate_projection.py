@@ -122,7 +122,7 @@ def collect_projection_data_sawyer(args):
     n = 0
     while n < num_frames:
         x = env.reset()
-        for k in range(3):
+        for k in range(5):
             for i in range(10):
                 x, _, _, _  = env.step(np.random.randn(env.dof))
 
@@ -161,7 +161,13 @@ def learn_proj_matrix(args):
         X.append(np.hstack((wc, np.ones((wc.shape[0], 1), dtype=np.float32))))
 
         pc = data['pixel_coords']
-        y.append(np.hstack((pc, np.ones((pc.shape[0], 1), dtype=np.float32))))
+        # print('pc:', pc.shape)
+        # print('pc[:,0,:]:', pc[:,0,:].shape)
+        # print('np.ones((pc.shape[0], 1), dtype=np.float32):', np.ones((pc.shape[0], 1), dtype=np.float32).shape)
+        # pc        15,1,2
+        # pc[:,0,:]  :,0,: = 15,2
+        # np.ones((pc.shape[0], 1)) = 15,1
+        y.append(np.hstack((pc[:,0,:], np.ones((pc.shape[0], 1), dtype=np.float32))))
 
 
     X = np.concatenate(X, axis=0)
@@ -192,6 +198,7 @@ def learn_proj_matrix(args):
 
 def check_pred(M, args):
     num_frames = args.num_frames
+    print('num_frames:', num_frames)
 
     crop = (50, 350)
     size = (128, 128)
@@ -273,7 +280,7 @@ if __name__ == "__main__":
     # parser.add_argument("--save_path", default="fetch_128_reach_proj")
     # parser.add_argument("--seed", type=int, default=0)
 
-    # Use this for Sawyer_128_reach Environment:
+    # Use this for Sawyer_128_reach Environment:x, _, _, _  = env.step(np.random.randn(env.dof))
     parser = argparse.ArgumentParser()
     parser.add_argument("--dir_name", default='data/projection/sawyer_128_reach_randgrip')
     parser.add_argument("--num_frames", type=int, default=3)

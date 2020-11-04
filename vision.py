@@ -345,8 +345,8 @@ def run(args):
     cfg = hyperparameters.get_config(args)
     cfg.layers_per_scale = 1
     # cfg.layers_per_scale=1
-    # cfg.num_keypoints=32
-    # cfg.batch_size = 25
+    cfg.num_keypoints=16
+    cfg.batch_size = 3
 
     utils.set_seed_everywhere(args.seed)
 
