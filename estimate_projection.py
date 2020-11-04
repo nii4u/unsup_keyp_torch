@@ -122,7 +122,7 @@ def collect_projection_data_sawyer(args):
     n = 0
     while n < num_frames:
         x = env.reset()
-        for k in range(5):
+        for k in range(3):
             for i in range(10):
                 x, _, _, _  = env.step(np.random.randn(env.dof))
 
@@ -282,18 +282,18 @@ if __name__ == "__main__":
 
     # Use this for Sawyer_128_reach Environment:x, _, _, _  = env.step(np.random.randn(env.dof))
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dir_name", default='data/projection/sawyer_128_reach_randgrip')
-    parser.add_argument("--num_frames", type=int, default=3)
-    parser.add_argument("--save_path", default="sawyer_128_reach_randgrip_proj")
+    parser.add_argument("--dir_name", default='data/projection/sawyer')
+    parser.add_argument("--num_frames", type=int, default=50)
+    parser.add_argument("--save_path", default="sawyer")
     parser.add_argument("--seed", type=int, default=0)
 
     args = parser.parse_args()
 
     # Use this for Sawyer_128_reach Environment:
     collect_projection_data_sawyer(args)
-    args.save_path = "sawyer_128_reach_joint_randgrip_proj"
+    args.save_path = "sawyer"
     M = learn_proj_matrix(args)
-    np.save("tmp_data/proj_sawyer_128_reach_randgrip.npy", M)
+    np.save("tmp_data/sawyer", M)
     check_pred_sawyer(M, args)
 
     # Use this for Fetch_128_reach environment:

@@ -9,8 +9,8 @@ import numpy as np
 
 #from keyp_resp import align_keypoints
 
-#IMG_W, IMG_H = (128, 128)
-#HMAP_W, HMAP_H = (16, 16)
+IMG_W, IMG_H = (128, 128)
+HMAP_W, HMAP_H = (16, 16)
 
 
 def unnormalize_image(img):
@@ -683,7 +683,7 @@ if __name__ == "__main__":
     #data = np.load('data/goal/fetch_pick_sep/fetch_pick_goal_5.npz', allow_pickle=True)
     #data = np.load('data/goal/fetch_128_reach_sep/fetch_128_reach_goal_0.npz', allow_pickle=True)
     #data = np.load("data/goal/sawyer_128_reach_joint/sawyer_128_reach_joint_goal.npz", mmap_mode='r', allow_pickle=True)
-    data = np.load("data/goal/proj_sawyer_5.npz", mmap_mode='r', allow_pickle=True)
+    #data = np.load("data/goal/proj_sawyer_5.npz", mmap_mode='r', allow_pickle=True)
     #data = np.load(filename, mmap_mode='r')
     #data = np.load('data/goal/fetch_128_reach_sep/fetch_128_reach_goal_0.npz', allow_pickle=True)
     #data = np.load('data/bair_push/orig/traj_9662_to_9917_30.npz')
