@@ -202,7 +202,7 @@ def evaluate_control_success_sawyer(args):
                 cur_pos_w = get_grip_pos(env)
                 dist = np.linalg.norm(cur_pos_w - goal_pos_w)
                 #print(dist)
-                if dist < 0.05:
+                if dist < 0.08:
                     reached = True
                     break
 
@@ -221,11 +221,11 @@ def evaluate_control_success_sawyer(args):
             else:
                 print("Did not reach")
 
-            # l_dir = args.train_dir if args.is_train else args.test_dir
-            # save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
-            # if not os.path.isdir(save_dir): os.makedirs(save_dir)
-            # save_path = os.path.join(save_dir, l_dir + "_{}_{}_seed_{}.mp4".format(i,reached,  args.seed))
-            # viz_imgseq_goal(frames, keyp_seq, store_goal_keyp_, goal_pos_pixel, unnormalize=False, save_path=save_path, min_costs=min_costs)
+            l_dir = args.train_dir if args.is_train else args.test_dir
+            save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
+            if not os.path.isdir(save_dir): os.makedirs(save_dir)
+            save_path = os.path.join(save_dir, l_dir + "_{}_{}_seed_{}.mp4".format(i,reached,  args.seed))
+            viz_imgseq_goal(frames, keyp_seq, store_goal_keyp_, goal_pos_pixel, unnormalize=False, save_path=save_path, min_costs=min_costs)
 
     print("Success Rate: ", float(count) / num_goals)
 
@@ -304,61 +304,61 @@ def test_start_end(args):
         check_start_goal((start_img_np, start_keyp.cpu().numpy(), start_pos),
                          (goal_img_np, goal_keyp.cpu().numpy(), goal_pos))
 
-# def sample_goal_frames(args):
-#     files = glob.glob(os.path.join(args.data_dir, "*.npz"))
+def sample_goal_frames(args):
+    files = glob.glob(os.path.join(args.data_dir, "*.npz"))
 
-#     goal_imgs = []
-#     for f in files:
-#         data = np.load(f, allow_pickle=True)
-#         img_seq = data['image'] # 256 x 64 x 64 x 3
-#         goal_imgs.append(img_seq[50])
-#         goal_imgs.append(img_seq[100])
+    goal_imgs = []
+    for f in files:
+        data = np.load(f, allow_pickle=True)
+        img_seq = data['image'] # 256 x 64 x 64 x 3
+        goal_imgs.append(img_seq[50])
+        goal_imgs.append(img_seq[100])
 
-#     goal_imgs = np.stack(goal_imgs)
+    goal_imgs = np.stack(goal_imgs)
 
-#     dir_name = "data/goal/sawyer_4_Sr_"
-#     if not os.path.isdir(dir_name): os.makedirs(dir_name)
-
-
-#     np.savez(os.path.join(dir_name, args.save_path + ".npz"), **{'image': goal_imgs})
+    dir_name = "data/goal/sawyer_4_Sr_"
+    if not os.path.isdir(dir_name): os.makedirs(dir_name)
 
 
-# def sample_goal_frames_env(args):
-#     env = suite.make(
-#         "SawyerLift",
-#         has_renderer=False,  # no on-screen renderer
-#         has_offscreen_renderer=True,  # off-screen renderer is required for camera observations
-#         ignore_done=True,  # (optional) never terminates episode
-#         use_camera_obs=True,  # use camera observations
-#         camera_height=128,  # set camera height
-#         camera_width=128,  # set camera width
-#         camera_name='sideview',  # use "agentview" camera
-#         use_object_obs=True,  # no object feature when training on pixels
-#         control_freq=60
-#     )
-
-#     goal_imgs = []
-#     grip_pos_l = []
-#     for i in range(50):
-#         x = env.reset()
-#         for k in range(100): x, _, _, _ = env.step(np.random.randn(env.dof))
-#         #for k in range(100): x, _, _, _  = env.step(np.array([ 0.55522316,  0.14306764,  0.15200021, -1.05206581, -0.10901184, 0.92641143,  0.65528861, -0.70019872]))
-#         #for k in range(10): x, _, _, _  = env.step(np.array([0.4236651, 0.02164808, 0.38311793, 0.05261622, 0.98733088, 0.8971267 , 0.08582806, 0.50903301]))
-
-#         im = img_as_ubyte(rotate(x['image'], 180))
-#         goal_imgs.append(im)
-
-#         grip_pos = np.array(env.sim.data.site_xpos[env.sim.model.site_name2id("grip_site")]).astype(np.float32)
-#         grip_pos_l.append(grip_pos)
+    np.savez(os.path.join(dir_name, args.save_path + ".npz"), **{'image': goal_imgs})
 
 
-#     goal_imgs = np.stack(goal_imgs)
-#     grip_pos_l = np.stack(grip_pos_l)
-#     dir_name = "data/goal/sawyer_reach_joint"
-#     if not os.path.isdir(dir_name): os.makedirs(dir_name)
+def sample_goal_frames_env(args):
+    env = suite.make(
+        "SawyerLift",
+        has_renderer=False,  # no on-screen renderer
+        has_offscreen_renderer=True,  # off-screen renderer is required for camera observations
+        ignore_done=True,  # (optional) never terminates episode
+        use_camera_obs=True,  # use camera observations
+        camera_height=128,  # set camera height
+        camera_width=128,  # set camera width
+        camera_name='sideview',  # use "agentview" camera
+        use_object_obs=True,  # no object feature when training on pixels
+        control_freq=60
+    )
 
-#     data = {'image': goal_imgs, 'grip_pos': grip_pos_l}
-#     np.savez(os.path.join(dir_name, args.save_path + ".npz"), **data)
+    goal_imgs = []
+    grip_pos_l = []
+    for i in range(50):
+        x = env.reset()
+        for k in range(100): x, _, _, _ = env.step(np.random.randn(env.dof))
+        #for k in range(100): x, _, _, _  = env.step(np.array([ 0.55522316,  0.14306764,  0.15200021, -1.05206581, -0.10901184, 0.92641143,  0.65528861, -0.70019872]))
+        #for k in range(10): x, _, _, _  = env.step(np.array([0.4236651, 0.02164808, 0.38311793, 0.05261622, 0.98733088, 0.8971267 , 0.08582806, 0.50903301]))
+
+        im = img_as_ubyte(rotate(x['image'], 180))
+        goal_imgs.append(im)
+
+        grip_pos = np.array(env.sim.data.site_xpos[env.sim.model.site_name2id("grip_site")]).astype(np.float32)
+        grip_pos_l.append(grip_pos)
+
+
+    goal_imgs = np.stack(goal_imgs)
+    grip_pos_l = np.stack(grip_pos_l)
+    dir_name = "data/goal/sawyer_reach_joint"
+    if not os.path.isdir(dir_name): os.makedirs(dir_name)
+
+    data = {'image': goal_imgs, 'grip_pos': grip_pos_l}
+    np.savez(os.path.join(dir_name, args.save_path + ".npz"), **data)
 
 if __name__ == "__main__":
     from register_args import get_argparse

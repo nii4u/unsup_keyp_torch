@@ -150,11 +150,13 @@ def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, unnormalize=True, 
         f4 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c="green")
         #f4 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c=np.arange(num_keypoints), s=mu*100, cmap='tab20') #Paired, gist_rainbow, Wistia
         #f5 = plt.scatter(goal_keyp[:,0], goal_keyp[:,1], c=mu_g,cmap='black')
-        if len(min_costs) > i:
-            plt.title("min_cost "+ str(min_costs[i]))
-        else:
-            print("min costs {}")
-        frames.append([f1, f2, f3, f4])
+        # if len(min_costs) > i:
+        #     plt.title("min_cost "+ str(min_costs[i]))
+        # else:
+        #     print("min costs {}")
+        x_text, y_text = 0, 10 # text position
+        f5 = plt.text(x_text, y_text, f"Min_Cost: {min_costs[i]:.6f}", fontsize = 12)
+        frames.append([f1, f2, f3, f4, f5])
 
     ani = animation.ArtistAnimation(fig, frames, interval=delay, blit=True)
 
@@ -682,7 +684,7 @@ if __name__ == "__main__":
     #data = np.load('data/fetch_pick/orig/fetch_pick_1.npz', allow_pickle=True)
     #data = np.load('data/goal/fetch_pick_sep/fetch_pick_goal_5.npz', allow_pickle=True)
     #data = np.load('data/goal/fetch_128_reach_sep/fetch_128_reach_goal_0.npz', allow_pickle=True)
-    #data = np.load("data/goal/sawyer_128_reach_joint/sawyer_128_reach_joint_goal.npz", mmap_mode='r', allow_pickle=True)
+    data = np.load("data/goal/sawyer_128_reach_joint/sawyer_128_reach_joint_goal.npz", mmap_mode='r', allow_pickle=True)
     #data = np.load("data/goal/proj_sawyer_5.npz", mmap_mode='r', allow_pickle=True)
     #data = np.load(filename, mmap_mode='r')
     #data = np.load('data/goal/fetch_128_reach_sep/fetch_128_reach_goal_0.npz', allow_pickle=True)
