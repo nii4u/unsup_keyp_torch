@@ -145,7 +145,7 @@ def evaluate_control_success_sawyer(args):
     goal_img_seq = convert_img_torch(goal_img_seq)
 
     model = load_model(args)
-    M = np.load('tmp_data/sawyer.npy')
+    M = np.load('tmp_data/proj_128_sawyer.npy')
 
     env = suite.make(
         "SawyerLift",
@@ -281,7 +281,7 @@ def check_start_goal(start, goal):
 
 def test_start_end(args):
     data = np.load(os.path.join(args.data_dir, args.save_path + ".npz"), allow_pickle=True)
-    M = np.load('tmp_data/sawyer.npy')
+    M = np.load('tmp_data/proj_128_sawyer.npy')
 
     img_seq = data['image']
     grip_pos_seq = data['grip_pos']
@@ -316,7 +316,7 @@ def sample_goal_frames(args):
 
     goal_imgs = np.stack(goal_imgs)
 
-    dir_name = "data/goal/sawyer_4_Sr_"
+    dir_name = "data/goal/sawyer_128_reach_joint"
     if not os.path.isdir(dir_name): os.makedirs(dir_name)
 
 
@@ -354,7 +354,7 @@ def sample_goal_frames_env(args):
 
     goal_imgs = np.stack(goal_imgs)
     grip_pos_l = np.stack(grip_pos_l)
-    dir_name = "data/goal/sawyer_reach_joint"
+    dir_name = "data/goal/sawyer_128_reach_joint"
     if not os.path.isdir(dir_name): os.makedirs(dir_name)
 
     data = {'image': goal_imgs, 'grip_pos': grip_pos_l}
