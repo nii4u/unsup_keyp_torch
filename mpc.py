@@ -185,7 +185,7 @@ def convert_to_pixel(object_pos, M):
 
 def evaluate_control_success(args):
     files = glob.glob(os.path.join(args.data_dir, "*.npz"))
-    count = 0
+    #count = 0
 
     model = load_model(args)
     M = np.load('tmp_data/proj_fetch_128_reach.npy')

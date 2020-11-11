@@ -163,6 +163,7 @@ def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, unnormalize=True, 
     if not save_path:
         plt.show()
     else:
+        #ani.save('basic_animation.mp4', fps=30)
         ani.save(save_path)
 
 def viz_keypoints(img_seq, keyp_seq, unnormalize=True, delay=100, save_path=None, annotate=False):

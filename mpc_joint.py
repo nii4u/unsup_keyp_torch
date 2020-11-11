@@ -225,7 +225,7 @@ def evaluate_control_success_sawyer(args):
             save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
             if not os.path.isdir(save_dir): os.makedirs(save_dir)
             save_path = os.path.join(save_dir, l_dir + "_{}_{}_seed_{}.mp4".format(i,reached,  args.seed))
-            viz_imgseq_goal(frames, keyp_seq, store_goal_keyp_, goal_pos_pixel, unnormalize=False, save_path=save_path, min_costs=min_costs)
+            viz_imgseq_goal(frames, keyp_seq, store_goal_keyw, unnormalize=False, save_path=save_path, min_costs=min_costs)
 
     print("Success Rate: ", float(count) / num_goals)
 
