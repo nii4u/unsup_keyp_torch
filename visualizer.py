@@ -592,7 +592,7 @@ def viz_all_unroll(img_seq, pred_img_seq, keyp_seq, unnormalize=False, delay=100
         #     mu = keypoints[k, 2]
         #     f2 = ax1.scatter(keypoints[k, 0], keypoints[k, 1], c='r', alpha=mu)
         #     f2s.append(f2)
-        f2 = ax2.scatter(keypoints[:,0], keypoints[:,1], c='r')
+        f2 = ax2.scatter(keypoints[:,0], keypoints[:,1], c='r', cmap='tab20')
 
         f3 = ax2.imshow(pred_img)
 
