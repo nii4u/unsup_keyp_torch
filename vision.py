@@ -24,7 +24,7 @@ class ImagesToKeypEncoder(nn.Module):
 
         T, im_C, im_H, im_W = image_shape
 
-        # Encoude image to features (add 2 to C for coord channels)
+        # Encode image to features (add 2 to C for coord channels)
         self.image_encoder = ImageEncoder(
             input_shape=(im_C + 2, im_H, im_W), initial_num_filters=cfg.num_encoder_filters,
             output_map_width=cfg.heatmap_width, layers_per_scale=cfg.layers_per_scale,
@@ -300,7 +300,7 @@ class KeypInverseModel(nn.Module):
     def __init__(self, cfg):
         super(KeypInverseModel, self).__init__()
 
-        H = 256
+        H = 64
         self.fc1 = nn.Linear(4*cfg.num_keypoints, H)
         self.fc2 = nn.Linear(H, H)
         self.fc3 = nn.Linear(H, cfg.action_dim)

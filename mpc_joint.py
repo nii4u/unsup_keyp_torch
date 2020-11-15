@@ -128,8 +128,8 @@ def load_model(args):
     #     model = train_dynamics.KeypointModel(cfg).to(device)
     # elif not args.inv_fwd:
     if not args.inv_fwd:
-        model = train_dynamics.KeypointModel(cfg).to(device)
-        # model = train_keyp_pred.KeypointModel(cfg).to(device)
+        #model = train_dynamics.KeypointModel(cfg).to(device)
+        model = train_keyp_pred.KeypointModel(cfg).to(device)
     else:
         model = train_keyp_inverse_forward.KeypointModel(cfg).to(device)
 

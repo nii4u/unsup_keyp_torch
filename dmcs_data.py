@@ -158,7 +158,7 @@ def collect_data_robosuite(args):
     #env = gym.make("FetchPushCustom-v1", n_substeps=20)
     #env = gym.make("FetchPickAndPlace-v1")
     #env = SawyerReachPushPickPlaceEnv()
-    env = SawyerEnv
+    #env = SawyerEnv
     env = suite.make(
         "SawyerLift",
         has_renderer=False,  # no on-screen renderer
@@ -325,7 +325,7 @@ if __name__ == "__main__":
     #collect_data(args)
     #train_test_split(args)
 
-    collect_data_fetch(args)
+    #collect_data_fetch(args)
     #collect_data_robosuite(args)
-    train_test_split(args)
+    #train_test_split(args)
     #create_train_split(args)
