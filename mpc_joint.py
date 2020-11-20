@@ -101,6 +101,7 @@ class MPC:
         im = im[np.newaxis, :, :, :]
         im = convert_img_torch(im)
         keyp = self.model.img_to_keyp(im.unsqueeze(0))[0, 0, :, :2]
+        keyp = keyp[[0,3,10], :]
         return keyp
 
 def convert_img_torch(img_seq):
@@ -174,6 +175,7 @@ def evaluate_control_success_sawyer(args):
             goal_pos_pixel = convert_to_pixel(goal_pos_w, M)
 
             goal_keyp  = model.img_to_keyp(goal_img[None, None, Ellipsis])[0,0, :,:2]
+            goal_keyp  = goal_keyp[[0,3,10], :]
 
             mpc = MPC(model, goal_keyp, action_dim=args.action_dim, H = args.horizon)
 
@@ -303,6 +305,8 @@ def test_start_end(args):
     with torch.no_grad():
         start_keyp = model.img_to_keyp(start_img[None, None, Ellipsis])[0,0] # num_keyp x 3
         goal_keyp  = model.img_to_keyp(goal_img[None, None, Ellipsis])[0,0]
+        start_keyp = start_keyp[[0,3,10], :]
+        goal_keyp  = goal_keyp[[0,3,10], :]
 
         start_img_np = utils.img_torch_to_numpy(start_img)
         goal_img_np = utils.img_torch_to_numpy(goal_img)
