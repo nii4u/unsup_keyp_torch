@@ -289,8 +289,8 @@ if __name__ == "__main__":
     #args.data_path = 'tmp_data/test_data_bair_push_15k_64kp_seed_0.npz'
     #args.data_path = 'tmp_data/test_data_sawyer_reach_75_32kp_seed_0.npz'
     #args.data_path = 'tmp_data/test_data_sawyer_reach_side_seed_0.npz'
-    #args.data_path = 'tmp_data/test_data_fetch_reach_inverse_forward_hmap2_seed_0.npz'
-    args.data_path = 'tmp_data/test_data_sawyer_128_sizecam_seed_0.npz'
+    args.data_path = 'data/goal/sawyer_128_reach_joint3/sawyer_128_reach_joint_goal.npz'
+    #args.data_path = 'tmp_data/test_data_sawyer_128_sidecam_seed_0.npz'
     #args.exp_name = "fetch_pick_action_e_75_test"
     #args.exp_name = "sawyer_reach_side"
     #args.exp_name = "fetch_reach_inverse_forward"
@@ -298,7 +298,7 @@ if __name__ == "__main__":
     args.k = 23
 
     #viz_recon_keyp(args)
-    viz_top_resp(args)
-    #viz_recon(args)
+    #viz_top_resp(args)
+    viz_recon(args)
 
     #viz_keyp_history_training(args)

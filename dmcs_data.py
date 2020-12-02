@@ -83,7 +83,7 @@ def collect_data(args):
         np.savez(save_path, **data)
 
 
-def get_frame(env, crop=(80,350), size=(128,128)):
+def get_frame(env, crop=(50,350), size=(128,128)):
     frame = env.render(mode='rgb_array')
     if crop: frame = frame[crop[0]:crop[1], crop[0]:crop[1]]
     frame = img_as_ubyte(resize(frame, size))

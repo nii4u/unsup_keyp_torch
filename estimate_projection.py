@@ -50,7 +50,7 @@ def cpselect(img1):
 def get_frame(env, crop=(50,350), size=(128,128)):
     frame = env.render(mode='rgb_array')
     if crop: frame = frame[crop[0]:crop[1], crop[0]:crop[1]]
-    #frame = img_as_ubyte(resize(frame, size))
+    frame = img_as_ubyte(resize(frame, size))
     return frame
 
 def collect_projection_data(args):
@@ -282,9 +282,9 @@ if __name__ == "__main__":
 
     # Use this for Sawyer_128_reach Environment:x, _, _, _  = env.step(np.random.randn(env.dof))
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dir_name", default='data/projection/sawyer')
-    parser.add_argument("--num_frames", type=int, default=50)
-    parser.add_argument("--save_path", default="sawyer")
+    parser.add_argument("--dir_name", default='data/projection/sawyer_reach_new')
+    parser.add_argument("--num_frames", type=int, default=1)
+    parser.add_argument("--save_path", default="sawyer_reach_proj_new")
     parser.add_argument("--seed", type=int, default=0)
 
     args = parser.parse_args()
@@ -293,7 +293,7 @@ if __name__ == "__main__":
     collect_projection_data_sawyer(args)
     args.save_path = "sawyer"
     M = learn_proj_matrix(args)
-    np.save("tmp_data/sawyer", M)
+    np.save("tmp_data/proj_sawyer_new", M)
     check_pred_sawyer(M, args)
 
     # Use this for Fetch_128_reach environment:

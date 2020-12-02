@@ -135,7 +135,7 @@ def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, unnormalize=True, 
         # x_text, y_text = 0, 10 # text position
         # f5 = plt.text(x_text, y_text, f"Loss: {frame_mse:.6f}", fontsize = 12)
         #c=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-        c=[1]*16
+        c=[0]*16
         #c[0] = 1
         c[0] = 2
         # f3 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c=c, cmap='tab20')\
@@ -150,13 +150,13 @@ def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, unnormalize=True, 
         f4 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c="green")
         #f4 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c=np.arange(num_keypoints), s=mu*100, cmap='tab20') #Paired, gist_rainbow, Wistia
         #f5 = plt.scatter(goal_keyp[:,0], goal_keyp[:,1], c=mu_g,cmap='black')
-        if len(min_costs) > i:
-            plt.title("min_cost "+ str(min_costs[i]))
-        else:
-            print("min costs {}")
-        x_text, y_text = 0, 10 # text position
-        f5 = plt.text(x_text, y_text, f"Min_Cost: {min_costs[i]:.6f}", fontsize = 12)
-        frames.append([f1, f2, f3, f4, f5])
+        # if len(min_costs) > i:
+        #     plt.title("min_cost "+ str(min_costs[i]))
+        # else:
+        #     print("min costs {}")
+        # x_text, y_text = 0, 10 # text position
+        # f5 = plt.text(x_text, y_text, f"Min_Cost: {min_costs[i]:.6f}", fontsize = 12)
+        frames.append([f1, f2, f3, f4])
 
     ani = animation.ArtistAnimation(fig, frames, interval=delay, blit=True)
 

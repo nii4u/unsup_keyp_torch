@@ -70,6 +70,14 @@ class MPC:
         actions_batch = (l-h) * torch.rand(self.num_sample_seq, self.H, self.action_dim) + h
         #actions_batch = torch.stack(actions, dim=0) # N x T x 4
 
+        # #generate numpy random actions and convert to torch 
+        #l, h = -1, 1
+        # actions = []
+        # # for i in range(self.num_sample_seq):
+        # action = np.random.randn(self.num_sample_seq, self.H, self.action_dim) #np (50, 8)
+        # actions = action #1000
+        # actions_batch = torch.tensor(actions).float() #torch.Size([1000, 50, 8])
+
         state_batch = state.unsqueeze(0)
         state_batch = state_batch.repeat((self.num_sample_seq, 1, 1))# N x N_K x 2
 
@@ -92,6 +100,8 @@ class MPC:
 
         goal_state = goal_state[None, None, :, :]
         curr_state = state_batch[:, :, :, :]
+        # goal_state = goal_state[[11], :]
+        # curr_state = state_batch[[11], :]
         T = state_batch.shape[1]
         cost = torch.sum((curr_state - goal_state)**2, dim=(1,2,3))/T
         #cost = torch.sum((curr_state - goal_state) ** 2, dim=(1, 2)) / T
@@ -113,7 +123,7 @@ def convert_img_torch(img_seq):
 
 def convert_to_pixel(object_pos, M):
     object_pos = np.array([object_pos[0], object_pos[1], object_pos[2], 1]).astype(np.float32)
-    object_pixel = M.dot(object_pos)[:2] * (100.0/100.0)
+    object_pixel = M.dot(object_pos)[:2] * (128.0/128.0)
     return object_pixel
 
 def load_model(args):
@@ -150,7 +160,7 @@ def evaluate_control_success_sawyer(args):
     goal_img_seq = convert_img_torch(goal_img_seq)
 
     model = load_model(args)
-    M = np.load('tmp_data/proj_128_sawyer.npy')
+    M = np.load('tmp_data/sawyer.npy')
 
     env = suite.make(
         "SawyerLift",
@@ -173,13 +183,15 @@ def evaluate_control_success_sawyer(args):
             goal_pos_w = grip_pos_seq[i]
             goal_pos_pixel = convert_to_pixel(goal_pos_w, M)
 
-            goal_keyp  = model.img_to_keyp(goal_img[None, None, Ellipsis])[0,0, :,:2]
+            goal_keyp = model.img_to_keyp(goal_img[None, None, Ellipsis])[0,0, :,:2]
 
             mpc = MPC(model, goal_keyp, action_dim=args.action_dim, H = args.horizon)
 
             x = env.reset()
             cur_pos_w = get_grip_pos(env)
-            print("To reach Distance:", np.linalg.norm(cur_pos_w - goal_pos_w))
+            dist = np.linalg.norm(cur_pos_w - goal_pos_w)
+            print("To reach Distance:", dist)
+            #print("To reach Distance:", np.linalg.norm(cur_pos_w - goal_pos_w))
 
             keyp = mpc.get_keyp_state( img_as_ubyte(rotate(x['image'], 180)))
             keyp_seq = []
@@ -191,7 +203,8 @@ def evaluate_control_success_sawyer(args):
             for t in range(args.max_episode_steps):
                 # action = mpc.select_min_cost_action(keyp).cpu().numpy()
                 # next_keyp = mpc.predict_next_states(keyp, action)
-                action, next_keyp, min_cost  = mpc.select_min_cost_action(keyp)
+                #action = np.random.randn(env.dof)
+                action, next_keyp, min_cost = mpc.select_min_cost_action(keyp)
                 action, next_keyp, min_cost = action.cpu().numpy(), next_keyp.cpu().numpy(), min_cost.numpy()
                 min_costs.append(min_cost)
                 x, _, done, _ = env.step(action)
@@ -201,11 +214,11 @@ def evaluate_control_success_sawyer(args):
                 keyp = mpc.get_keyp_state(im)
 
                 keyp_seq.append(keyp)
-                pred_keyp_seq.append(next_keyp)
+                #pred_keyp_seq.append(next_keyp)
                 store_goal_keyp.append(goal_keyp)
 
-                cur_pos_w = get_grip_pos(env)
-                dist = np.linalg.norm(cur_pos_w - goal_pos_w)
+                # cur_pos_w = get_grip_pos(env)
+                # dist = np.linalg.norm(cur_pos_w - goal_pos_w)
                 #print(dist)
                 if dist < 0.08:
                     reached = True
@@ -286,7 +299,7 @@ def check_start_goal(start, goal):
 
 def test_start_end(args):
     data = np.load(os.path.join(args.data_dir, args.save_path + ".npz"), allow_pickle=True)
-    M = np.load('tmp_data/proj_128_sawyer.npy')
+    M = np.load('tmp_data/sawyer.npy')
 
     img_seq = data['image']
     grip_pos_seq = data['grip_pos']
@@ -303,6 +316,9 @@ def test_start_end(args):
     with torch.no_grad():
         start_keyp = model.img_to_keyp(start_img[None, None, Ellipsis])[0,0] # num_keyp x 3
         goal_keyp  = model.img_to_keyp(goal_img[None, None, Ellipsis])[0,0]
+        
+        start_keyp = start_keyp[[11], :]
+        goal_keyp = goal_keyp[[11], :]
 
         start_img_np = utils.img_torch_to_numpy(start_img)
         goal_img_np = utils.img_torch_to_numpy(goal_img)
@@ -316,12 +332,12 @@ def sample_goal_frames(args):
     for f in files:
         data = np.load(f, allow_pickle=True)
         img_seq = data['image'] # 256 x 64 x 64 x 3
-        goal_imgs.append(img_seq[50])
-        goal_imgs.append(img_seq[100])
+        goal_imgs.append(img_seq[1])
+        #goal_imgs.append(img_seq[100])
 
     goal_imgs = np.stack(goal_imgs)
 
-    dir_name = "data/goal/sawyer_128_reach_joint"
+    dir_name = "data/goal/sawyer_128_reach_joint_n"
     if not os.path.isdir(dir_name): os.makedirs(dir_name)
 
 
@@ -347,8 +363,6 @@ def sample_goal_frames_env(args):
     for i in range(50):
         x = env.reset()
         for k in range(100): x, _, _, _ = env.step(np.random.randn(env.dof))
-        #for k in range(100): x, _, _, _  = env.step(np.array([ 0.55522316,  0.14306764,  0.15200021, -1.05206581, -0.10901184, 0.92641143,  0.65528861, -0.70019872]))
-        #for k in range(10): x, _, _, _  = env.step(np.array([0.4236651, 0.02164808, 0.38311793, 0.05261622, 0.98733088, 0.8971267 , 0.08582806, 0.50903301]))
 
         im = img_as_ubyte(rotate(x['image'], 180))
         goal_imgs.append(im)
@@ -359,7 +373,7 @@ def sample_goal_frames_env(args):
 
     goal_imgs = np.stack(goal_imgs)
     grip_pos_l = np.stack(grip_pos_l)
-    dir_name = "data/goal/sawyer_128_reach_joint"
+    dir_name = "data/goal/sawyer_128_reach_joint_n"
     if not os.path.isdir(dir_name): os.makedirs(dir_name)
 
     data = {'image': goal_imgs, 'grip_pos': grip_pos_l}
@@ -368,17 +382,19 @@ def sample_goal_frames_env(args):
 if __name__ == "__main__":
     from register_args import get_argparse
     parser =  get_argparse(False)
-    parser.add_argument('--train_dynamics', action='store_true')
+    #parser.add_argument('--train_dynamics', action='store_true')
     args = parser.parse_args()
 
     #args.data_dir = "data/sawyer_reach_side_75/test"
-    args.data_dir = "data/goal/sawyer_128_reach_joint"
-    args.save_path = "sawyer_128_reach_joint_goal"
+    args.data_dir = "data/goal/sawyer_128_reach_joint_n"
+    args.save_path = "sawyer_128_2"
     args.max_episode_steps = 100
     args.horizon = 50
     args.inv_fwd = False
 
     utils.set_seed_everywhere(args.seed)
+
+    #sample_goal_frames(args)
 
     #sample_goal_frames_env(args)
 

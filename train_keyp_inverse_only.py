@@ -54,13 +54,13 @@ class KeypointModel(pl.LightningModule):
                pred_action_seq
 
     def unroll(self, img_seq, action_seq):
-        # keypoints_seq, _ = self.images_to_keypoints_net(img_seq)
-        # keypoint_0 = keypoints_seq[:, 0, :, :2]
-        # pred_keypoints_seq = self.keyp_pred_net.unroll(keypoint_0, action_seq)
-        # pred_keypoints_seq = torch.cat((pred_keypoints_seq, keypoints_seq[:, 1:, :, 2].unsqueeze(3)), dim=3)
-        # pred_img_seq = self.keypoints_to_images_net(pred_keypoints_seq)
-        #
-        # return pred_img_seq, pred_keypoints_seq
+        keypoints_seq, _ = self.images_to_keypoints_net(img_seq)
+        keypoint_0 = keypoints_seq[:, 0, :, :2]
+        pred_keypoints_seq = self.keyp_pred_net.unroll(keypoint_0, action_seq)
+        pred_keypoints_seq = torch.cat((pred_keypoints_seq, keypoints_seq[:, 1:, :, 2].unsqueeze(3)), dim=3)
+        pred_img_seq = self.keypoints_to_images_net(pred_keypoints_seq)
+        
+        return pred_img_seq, pred_keypoints_seq
         pass
 
     def img_to_keyp(self, img_seq):
