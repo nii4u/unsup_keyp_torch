@@ -238,15 +238,16 @@ def evaluate_control_success(args):
                 count += 1
                 frames = np.stack(frames)
 
-                l_dir = args.train_dir if args.is_train else args.test_dir
-                save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
-                if not os.path.isdir(save_dir): os.makedirs(save_dir)
-                save_path = os.path.join(save_dir, l_dir + "_{}_seed_{}.mp4".format(i, args.seed))
-                viz_imgseq_goal(frames, goal_pos, unnormalize=False, save_path=save_path)
+                # l_dir = args.train_dir if args.is_train else args.test_dir
+                # save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
+                # if not os.path.isdir(save_dir): os.makedirs(save_dir)
+                # save_path = os.path.join(save_dir, l_dir + "_{}_seed_{}.mp4".format(i, args.seed))
+                # viz_imgseq_goal(frames, goal_pos, unnormalize=False, save_path=save_path)
             else:
                 print("Did not reach")
 
     print("Success Rate: ", float(count) / len(files))
+    print("Num of steps: ", float(num_steps))
     print("Average Num of steps: ", float(num_steps)/count)
 
 def check_recon(args):
@@ -332,10 +333,10 @@ if __name__ == "__main__":
 
     utils.set_seed_everywhere(args.seed)
 
-    test_start_end(args)
+    #test_start_end(args)
     #main(args)
 
-    #evaluate_control_success(args)
+    evaluate_control_success(args)
 
     #check_recon(args)
     #test_env(args)

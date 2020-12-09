@@ -104,14 +104,25 @@ class MPC:
         # curr_state = state_batch[[11], :]
         T = state_batch.shape[1]
         
-        distance = torch.sum((curr_state - goal_state)**2, dim=(1,3))/T
-        k_max = torch.argmax(distance, dim=0)
+        # distance = torch.sum((curr_state - goal_state)**2, dim=(1,3))/T # check distance
+        # k_max = torch.argmax(distance, dim=1)
+        # print('distance', distance.shape)
+        # print('k_max', k_max.shape)
+        # print('k_max', k_max[:,None].shape)
         
-        #cost = distance[k_max] # approach 1
-        cost = torch.sum((curr_state[k_max] - goal_state[k_max])**2, dim=(1,2)) # approach 2
+        # approach 1 
+        # cost = []
+        # for d, k in zip(distance.tolist(), k_max.tolist()):
+        #     cost.append(d[k])
+        # cost = torch.Tensor(cost)
+
+        # cost = distance[k_max] # approach 1
+        # cost = torch.sum((curr_state[k_max] - goal_state[k_max])**2, dim=(1,2)) # approach 2
         
-        #cost = torch.sum((curr_state - goal_state)**2, dim=(1,2,3))/T
+        cost = torch.sum((curr_state - goal_state)**2, dim=(1,2,3))/T
         #cost = torch.sum((curr_state - goal_state) ** 2, dim=(1, 2)) / T
+        
+        # print('cost', cost.shape)
         return cost
 
     def get_keyp_state(self, im):
@@ -180,10 +191,11 @@ def evaluate_control_success_sawyer(args):
         camera_width=128,  # set camera width
         camera_name='sideview',  # use "agentview" camera
         use_object_obs=False,  # no object feature when training on pixels
-        control_freq=60
+        control_freq=90
     )
 
     count = 0
+    num_steps = 0
     num_goals = goal_img_seq.shape[0]
     for i in range(num_goals):
         with torch.no_grad():
@@ -226,10 +238,11 @@ def evaluate_control_success_sawyer(args):
                 #pred_keyp_seq.append(next_keyp)
                 store_goal_keyp.append(goal_keyp)
 
-                # cur_pos_w = get_grip_pos(env)
-                # dist = np.linalg.norm(cur_pos_w - goal_pos_w)
+                cur_pos_w = get_grip_pos(env)
+                dist = np.linalg.norm(cur_pos_w - goal_pos_w)
                 #print(dist)
                 if dist < 0.08:
+                    num_steps += t
                     reached = True
                     break
 
@@ -248,13 +261,14 @@ def evaluate_control_success_sawyer(args):
             else:
                 print("Did not reach")
 
-            l_dir = args.train_dir if args.is_train else args.test_dir
-            save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
-            if not os.path.isdir(save_dir): os.makedirs(save_dir)
-            save_path = os.path.join(save_dir, l_dir + "_{}_{}_seed_{}.mp4".format(i,reached,  args.seed))
-            viz_imgseq_goal(frames, keyp_seq, store_goal_keyp_, goal_pos_pixel, unnormalize=False, save_path=save_path, min_costs=min_costs)
+            # l_dir = args.train_dir if args.is_train else args.test_dir
+            # save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
+            # if not os.path.isdir(save_dir): os.makedirs(save_dir)
+            # save_path = os.path.join(save_dir, l_dir + "_{}_{}_seed_{}.mp4".format(i,reached,  args.seed))
+            # viz_imgseq_goal(frames, keyp_seq, store_goal_keyp_, goal_pos_pixel, unnormalize=False, save_path=save_path, min_costs=min_costs)
 
     print("Success Rate: ", float(count) / num_goals)
+    print("Average Num of steps: ", float(num_steps)/count)
 
 def get_start_frame(return_pos=False):
     env = suite.make(
@@ -267,7 +281,7 @@ def get_start_frame(return_pos=False):
         camera_width=128,  # set camera width
         camera_name='sideview',  # use "agentview" camera
         use_object_obs=False,  # no object feature when training on pixels
-        control_freq=60
+        control_freq=90
     )
 
     x = env.reset()
@@ -364,7 +378,7 @@ def sample_goal_frames_env(args):
         camera_width=128,  # set camera width
         camera_name='sideview',  # use "agentview" camera
         use_object_obs=True,  # no object feature when training on pixels
-        control_freq=60
+        control_freq=90
     )
 
     goal_imgs = []
@@ -390,9 +404,9 @@ def sample_goal_frames_env(args):
 
 if __name__ == "__main__":
     from register_args import get_argparse
-    parser =  get_argparse(False)
+    #parser =  get_argparse(False)
     #parser.add_argument('--train_dynamics', action='store_true')
-    args = parser.parse_args()
+    args = get_argparse(False).parse_args()
 
     #args.data_dir = "data/sawyer_reach_side_75/test"
     args.data_dir = "data/goal/sawyer_128_reach_joint_n"
