@@ -378,7 +378,7 @@ def run(args):
     print("Pred_k: ", pred_k.shape, "Pred_action:", pred_action.shape)
 
     b = sum([np.prod(list(params.size())) for params in imgs_to_keyp_model.parameters()])
-    print("Encodeer params: ", b)
+    print("Encoder params: ", b)
     c = sum([np.prod(list(params.size())) for params in keyp_to_imgs_model.parameters()])
     print("Decoder params: ", c)
     d = sum([np.prod(list(params.size())) for params in keyp_pred_net.parameters()])

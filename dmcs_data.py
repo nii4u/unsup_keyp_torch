@@ -313,9 +313,9 @@ def parse_args():
     parser.add_argument('--image_size', type=int, default=128) 
     parser.add_argument('--action_repeat', type=int, default=100)
 
-    parser.add_argument("--dir_name", default='data/sawyer_128_lift_100')
+    parser.add_argument("--dir_name", default='data/sawyer_128_lift_75')
     parser.add_argument("--dir_vid_name", default='vids_env')
-    parser.add_argument("--num_episodes", type=int, default=100)  #default is 1
+    parser.add_argument("--num_episodes", type=int, default=75)  #default is 1
     parser.add_argument("--trial", default="")
 
     return parser.parse_args()

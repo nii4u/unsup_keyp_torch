@@ -296,11 +296,11 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    #np.random.seed(args.seed)
+    np.random.seed(args.seed)
 
-    #main(args)
+    main(args)
     #check(args)
 
-    test_env(args)
+    #test_env(args)
 
-    #split(args)
+    split(args)

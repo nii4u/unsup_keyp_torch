@@ -290,7 +290,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Use this for Sawyer_128_reach Environment:
-    collect_projection_data_sawyer(args)
+    #collect_projection_data_sawyer(args)
     args.save_path = "sawyer"
     M = learn_proj_matrix(args)
     np.save("tmp_data/proj_sawyer_new", M)

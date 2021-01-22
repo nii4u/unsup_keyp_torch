@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib.cm as cm
 import numpy as np
-#import torch
+import torch
 #import torch.nn.functional as F
 
 #from keyp_resp import align_keypoints
@@ -26,8 +26,8 @@ def project_keyp(keyp):
 
     N = x.shape[0]
 
-    #return np.hstack((x.reshape((N, 1)), y.reshape((N, 1)), mu.reshape(N,1)))
-    return np.hstack((x.reshape((N, 1)), y.reshape((N, 1)))), mu
+    return np.hstack((x.reshape((N, 1)), y.reshape((N, 1)), mu.reshape(N,1)))
+    #return np.hstack((x.reshape((N, 1)), y.reshape((N, 1)))), mu
     #return np.hstack((x.reshape((N, 1)), y.reshape((N, 1))))
 
 def project_keyp_batch(keyp):
@@ -101,9 +101,9 @@ def viz_imgseq(image_seq, unnormalize=False, delay=100, save_path=None):
     else:
         ani.save(save_path)
 
-def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, unnormalize=True, delay=100, save_path=None, min_costs=[]):
-    print('image_seq.shape:', image_seq.shape)
-    print('keyp_seq.shape:', keyp_seq.shape)
+def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, goal_state_seq=None, unnormalize=True, delay=100, save_path=None, min_costs=[]):
+    print('image_seq.shape:', image_seq.shape) #(100, 128, 128, 3)
+    print('keyp_seq.shape:', keyp_seq.shape) #(100, 16, 3)
     N = image_seq.shape[0]
     
     # compute MSE
@@ -137,9 +137,9 @@ def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, unnormalize=True, 
         #c=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
         c=[0]*16
         #c[0] = 1
-        c[0] = 2
-        # f3 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c=c, cmap='tab20')\
-        f3 = plt.scatter(pred_keypoints[:, 0], pred_keypoints[:, 1], c="red", cmap='tab20')
+        # c[11] = 3
+        #f3 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c=c, cmap='tab20')
+        f3 = plt.scatter(pred_keypoints[:, 0], pred_keypoints[:, 1], c=c, cmap='tab20', marker='o')
         
         # f3 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c=mu, cmap='Reds')
         #f2 = ax1.scatter(keypoints[:, 0], keypoints[:, 1], c=np.arange(num_keypoints), s=mu*100, cmap='tab20') #Paired, gist_rainbow, Wistia
@@ -147,7 +147,7 @@ def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, unnormalize=True, 
         #keypoints = pred_keyp_seq[i]
         #keypoints, mu = project_keyp(keypoints)
         #num_keypoints = len(keypoints)
-        f4 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c="green")
+        f4 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c="green", marker='x')
         #f4 = plt.scatter(keypoints[:, 0], keypoints[:, 1], c=np.arange(num_keypoints), s=mu*100, cmap='tab20') #Paired, gist_rainbow, Wistia
         #f5 = plt.scatter(goal_keyp[:,0], goal_keyp[:,1], c=mu_g,cmap='black')
         # if len(min_costs) > i:
@@ -156,7 +156,19 @@ def viz_imgseq_goal(image_seq, keyp_seq, pred_keyp_seq, goal, unnormalize=True, 
         #     print("min costs {}")
         # x_text, y_text = 0, 10 # text position
         # f5 = plt.text(x_text, y_text, f"Min_Cost: {min_costs[i]:.6f}", fontsize = 12)
-        frames.append([f1, f2, f3, f4])
+        cost = np.sum((keyp_seq[i] - goal_state_seq[i])**2)
+        x_text, y_text = 0, 10 # text position
+        f5 = plt.text(x_text, y_text, f"Cost: {cost:.6f}", fontsize = 12)
+
+        if goal_state_seq is not None:
+            goal_keypoints = goal_state_seq[i]
+            goal_keypoints, goal_mu = project_keyp(goal_keypoints)
+            goal_num_keypoints = len(goal_keypoints)
+            c = ['Yellow']*16
+            c[7] = 'Red'
+            f6 = plt.scatter(goal_keypoints[:, 0], goal_keypoints[:, 1], c=c, marker='x')
+
+        frames.append([f1, f2, f6, f3, f4, f5])
 
     ani = animation.ArtistAnimation(fig, frames, interval=delay, blit=True)
 
@@ -685,7 +697,7 @@ if __name__ == "__main__":
     #data = np.load('data/fetch_pick/orig/fetch_pick_1.npz', allow_pickle=True)
     #data = np.load('data/goal/fetch_pick_sep/fetch_pick_goal_5.npz', allow_pickle=True)
     #data = np.load('data/goal/fetch_128_reach_sep/fetch_128_reach_goal_0.npz', allow_pickle=True)
-    data = np.load("data/goal/sawyer_128_reach_joint/sawyer_128_reach_joint_goal.npz", mmap_mode='r', allow_pickle=True)
+    #data = np.load("data/goal/sawyer_128_reach_joint/sawyer_128_reach_joint_goal.npz", mmap_mode='r', allow_pickle=True)
     #data = np.load("data/goal/proj_sawyer_5.npz", mmap_mode='r', allow_pickle=True)
     #data = np.load(filename, mmap_mode='r')
     #data = np.load('data/goal/fetch_128_reach_sep/fetch_128_reach_goal_0.npz', allow_pickle=True)
