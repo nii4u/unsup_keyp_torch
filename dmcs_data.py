@@ -9,7 +9,7 @@ import numpy as np
 import random
 import glob
 import gym
-import fetch_env_custom
+#import fetch_env_custom
 from skimage.transform import resize
 from skimage.transform import rotate
 from skimage.util import img_as_ubyte
@@ -268,7 +268,8 @@ def create_train_split(args):
     #split_fracs = [2/3.0, 1/3.0, 1/6.0]
     #split_fracs = [1/30.0]
     #split_fracs = [1.0/2.0, 1.0/4.0]
-    split_fracs = [1/3.0]
+    #split_fracs = [1/3.0]
+    split_fracs = [3/10]
     for frac in split_fracs:
         num_split = int((frac * num_train_files))
 
@@ -297,16 +298,16 @@ def create_train_split(args):
 def parse_args():
     parser = argparse.ArgumentParser()
     # environment
-    parser.add_argument('--domain_name', default='acrobot')
-    parser.add_argument('--task_name', default='swingup')
+    parser.add_argument('--domain_name', default='sawyer')
+    parser.add_argument('--task_name', default='lift')
     parser.add_argument('--seed', type=int, default=1)
     parser.add_argument('--from_pixels', type=bool, default=True)
     parser.add_argument('--image_size', type=int, default=64)
     parser.add_argument('--action_repeat', type=int, default=1)
 
-    parser.add_argument("--dir_name", default='data/all_envs')
+    parser.add_argument("--dir_name", default='data/sawyer_64_lift_sideview_100')
     parser.add_argument("--dir_vid_name", default='vids_env')
-    parser.add_argument("--num_episodes", type=int, default=1)
+    parser.add_argument("--num_episodes", type=int, default=130)
     parser.add_argument("--trial", default="")
 
     return parser.parse_args()
@@ -317,6 +318,6 @@ if __name__ == "__main__":
     # train_test_split(args)
 
     #collect_data_fetch(args)
-    #collect_data_robosuite(args)
-    #train_test_split(args)
-    create_train_split(args)
+    collect_data_robosuite(args)
+    train_test_split(args)
+    #create_train_split(args)
