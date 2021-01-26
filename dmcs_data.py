@@ -274,10 +274,10 @@ def create_train_split(args):
     test_files = glob.glob(test_dir)
 
     num_train_files = len(train_files)
-    split_fracs = [2/3.0, 1/3.0, 1/6.0]
+    #split_fracs = [2/3.0, 1/3.0, 1/6.0]
     #split_fracs = [1/30.0]
     #split_fracs = [1.0/2.0, 1.0/4.0]
-    #split_fracs = [1/3.0]
+    split_fracs = [1/3.0]
     for frac in split_fracs:
         num_split = int((frac * num_train_files))
 
@@ -313,9 +313,9 @@ def parse_args():
     parser.add_argument('--image_size', type=int, default=128) 
     parser.add_argument('--action_repeat', type=int, default=100)
 
-    parser.add_argument("--dir_name", default='data/sawyer_128_lift_75')
+    parser.add_argument("--dir_name", default='data/sawyer_128_lift_sideview_50')
     parser.add_argument("--dir_vid_name", default='vids_env')
-    parser.add_argument("--num_episodes", type=int, default=75)  #default is 1
+    parser.add_argument("--num_episodes", type=int, default=65)  #default is 1
     parser.add_argument("--trial", default="")
 
     return parser.parse_args()

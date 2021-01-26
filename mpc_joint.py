@@ -113,17 +113,30 @@ class MPC:
         #     act = (l - h)*torch.rand(self.H, 4) + h
         #     actions.append(act)
 
-        # l, h = -1, 1
-        # actions_batch = (l-h) * torch.rand(self.num_sample_seq, self.H, self.action_dim) + h
+        l, h = -1, 1
+        actions_batch = (l-h) * torch.rand(self.num_sample_seq, self.H, self.action_dim) + h
         #actions_batch = torch.stack(actions, dim=0) # N x T x 4
 
-        # #generate numpy random actions and convert to torch 
-        #l, h = -1, 1
-        actions = []
-        # for i in range(self.num_sample_seq):
-        action = np.random.randn(self.num_sample_seq, self.H, self.action_dim) #np (50, 8)
-        actions = action #1000
-        actions_batch = torch.tensor(actions).float() #torch.Size([1000, 50, 8])
+        # # #generate numpy random actions and convert to torch 
+        # #l, h = -1, 1
+        # actions = []
+        # # for i in range(self.num_sample_seq):
+        # action = np.random.randn(self.num_sample_seq-1, self.H, self.action_dim) #np (50, 8)
+        # #print("action: ", action.shape)
+        # actions = action #1000
+
+        # file = glob.glob(os.path.join(args.data_dir, "*.npz"))
+        # data = np.load(file[0], allow_pickle=True)
+        # #print("first file: ",file[0])
+        # # for k in data.files:
+        # #     print("k****", k)
+        # ground_truth_action = data['action']
+        # #print("ground_truth_action: ", np.argmin(ground_truth_action))
+        
+        # total_actions = np.concatenate([actions, ground_truth_action[None, :, :]], axis=0)
+        # #total_actions = torch.from_numpy(actions, ground_truth_action[None, :, :], dim=0)
+        # actions_batch = torch.tensor(total_actions).float() #torch.Size([1000, 50, 8])
+        # #print("**actions_batch: ", actions_batch.shape)
 
         state_batch = state.unsqueeze(0)
         state_batch = state_batch.repeat((self.num_sample_seq, 1, 1))# N x N_K x 2
@@ -132,6 +145,7 @@ class MPC:
 
         costs = self.cost_fn(next_state_batch, self.goal_state)
         # print('costs:',costs.shape)  # costs: torch.Size([1000, 50])
+        print("Costs: ", costs)
 
         ###strategie: average the first actions of best pools
 
@@ -164,9 +178,11 @@ class MPC:
         # costs, _ = torch.min(costs, dim=(1))
 
         min_idx = costs.argmin()
-        # print("min_idx: ", min_idx)
+        #print("min_idx: ", min_idx)
         min_cost = costs[min_idx]
+        print("**Min_Cost: ", min_cost)
         action = actions_batch[min_idx][0]
+        # print("**Action: ", action)
         next_state = next_state_batch[min_idx, 0]
 
         # print('action', action.shape)
@@ -233,7 +249,7 @@ def convert_img_torch(img_seq):
 
 def convert_to_pixel(object_pos, M):
     object_pos = np.array([object_pos[0], object_pos[1], object_pos[2], 1]).astype(np.float32)
-    object_pixel = M.dot(object_pos)[:2] * (128.0/128.0)
+    object_pixel = M.dot(object_pos)[:2] * (128.0/145.0)
     return object_pixel
 
 def load_model(args):
@@ -375,11 +391,11 @@ def evaluate_control_success_sawyer(args):
             else:
                 print("Did not reach")
 
-            l_dir = args.train_dir if args.is_train else args.test_dir
-            save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
-            if not os.path.isdir(save_dir): os.makedirs(save_dir)
-            save_path = os.path.join(save_dir, l_dir + "_{}_{}_seed_{}.mp4".format(i,reached,  args.seed))
-            viz_imgseq_goal(frames, keyp_seq, pred_keyp_seq, goal_pos_pixel, store_goal_keyp_, unnormalize=False, save_path=save_path, min_costs=min_costs)
+            # l_dir = args.train_dir if args.is_train else args.test_dir
+            # save_dir = os.path.join(args.vids_dir, "control", args.vids_path)
+            # if not os.path.isdir(save_dir): os.makedirs(save_dir)
+            # save_path = os.path.join(save_dir, l_dir + "_{}_{}_seed_{}.mp4".format(i,reached,  args.seed))
+            # viz_imgseq_goal(frames, keyp_seq, pred_keyp_seq, goal_pos_pixel, store_goal_keyp_, unnormalize=False, save_path=save_path, min_costs=min_costs)
 
     print("Success Rate: ", float(count) / num_goals)
     print("Average Num of steps: ", np.sum(steps_per_episode) / count)
@@ -533,8 +549,8 @@ if __name__ == "__main__":
    # print(args)
 
     #args.data_dir = "data/sawyer_reach_side_75/test"
-    args.data_dir = "data/goal/sawyer_128_reach_joint"
-    args.save_path = "sawyer_128_reach_joint_goal_0"
+    args.data_dir = "data/goal/sawyer_goals_with_action"
+    args.save_path = "sawyer_goals_with_action"
     args.max_episode_steps = 100
     args.horizon = 50
     args.inv_fwd = False

@@ -26,8 +26,8 @@ def project_keyp(keyp):
 
     N = x.shape[0]
 
-    return np.hstack((x.reshape((N, 1)), y.reshape((N, 1)), mu.reshape(N,1)))
-    #return np.hstack((x.reshape((N, 1)), y.reshape((N, 1)))), mu
+    #return np.hstack((x.reshape((N, 1)), y.reshape((N, 1)), mu.reshape(N,1)))
+    return np.hstack((x.reshape((N, 1)), y.reshape((N, 1)))), mu
     #return np.hstack((x.reshape((N, 1)), y.reshape((N, 1))))
 
 def project_keyp_batch(keyp):

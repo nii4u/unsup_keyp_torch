@@ -73,7 +73,7 @@ def get_config(FLAGS):
 
     # Keypoint encoding settings:
     cfg.num_keypoints = FLAGS.num_keypoints
-    cfg.heatmap_width = 32
+    cfg.heatmap_width = 16
     cfg.heatmap_regularization = FLAGS.heatmap_reg
     cfg.keypoint_width = 1.5
     cfg.num_encoder_filters = 32
